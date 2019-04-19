@@ -1,8 +1,9 @@
 package com.jk.service;
 
+
 import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient("service-merchant")
-public interface MerchantServiceFeign extends  MerchantService {
+public interface MerchantServiceFeign  extends MerchantService {
 
 }
