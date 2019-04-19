@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.MerchantMapper">
+   <!--查询商品-->
+   <select id="findTreeList" parameterType="int" resultType="com.jk.model.NavBean">
+      select id,text,pid,href from t_nav where pid=#{pid}
+   </select>
+   <select id="findMerchantCount" parameterType="com.jk.model.MerchantBean" resultType="int">
+      select count(*) from yy_merchants
+   </select>
+   <select id="findMerchantPage" resultType="com.jk.model.MerchantBean">
+      select * from yy_merchants
+      limit #{start},#{rows}
+   </select>
+   <!--删除-->
+   <delete id="delOne" parameterType="int" >
+        delete  from yy_merchants where id=#{id}
+    </delete>
+   <!--上下架-->
+   <!--<update id="updateStatus" parameterType="com.jk.model.MerchantBean">
+        update yy_merchants m set m.updown=#{updown} where m.id=#{id}
+    </update>-->
+    <!--新增-->
+    <insert id="saveMerchant" parameterType="com.jk.model.MerchantBean">
+        insert into yy_merchants (name,type,standard,image,info,counts,expirationdate,repertory,goodreputation,peoplebuy,referencenumber,swag,promotionofgoods,swagprice,promotionprice,invoicetype,invoicecontents,invoiceprice,updown)
+        values (#{name},#{type},#{standard},#{image},#{info},#{counts},#{expirationdate},#{repertory},#{goodreputation},#{peoplebuy},#{referencenumber},#{swag},#{promotionofgoods},#{swagprice},#{promotionprice},#{invoicetype},#{invoicecontents},#{invoiceprice},1)
+    </insert>
+    <!--回显-->
+    <select id="findMarchantById" parameterType="int" resultType="com.jk.model.MerchantBean">
+        select m.* from yy_merchants m  where m.id=#{id}
+    </select>
+    <!--修改-->
+    <update id="updateMerchant">
+        update yy_merchants m set  m.name=#{name},m.type=#{type},m.standard=#{standard},m.image=#{image},m.info=#{info},m.counts=#{counts},m.expirationdate=#{expirationdate},m.repertory=#{repertory},
+        m.goodreputation=#{goodreputation},m.peoplebuy=#{peoplebuy},m.referencenumber=#{referencenumber},m.swag=#{swag},m.promotionofgoods=#{promotionofgoods},m.swagprice=#{swagprice},m.promotionprice=#{promotionprice},m.invoicetype=#{invoicetype},m.invoicecontents=#{invoicecontents},m.invoiceprice=#{invoiceprice},m.updown=#{updown}
+        where m.id=#{id}
+    </update>
+
+</mapper>

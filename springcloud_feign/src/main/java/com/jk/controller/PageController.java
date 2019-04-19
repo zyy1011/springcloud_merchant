@@ -1,27 +1,10 @@
-/**
- * Copyright (C), 2019, 金科教育
- * FileName: PageController
- * Author:   ls
- * Date:     2019/4/17 17:48
- * Description: a
- * History:
- * <author>          <time>          <version>          <desc>
- * 作者姓名           修改时间           版本号              描述
- */
 package com.jk.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * 〈一句话功能简述〉<br> 
- * 〈a〉
- *
- * @author ls
- * @create 2019/4/17
- * @since 1.0.0
- */
 @Controller
+@RequestMapping("page")
 public class PageController {
 
 
@@ -41,8 +24,8 @@ public class PageController {
     public String toshang(){
         return "addShang";
     }
-    @RequestMapping("toadd")
-    public String toadd(){
+    @RequestMapping("toaddOne")
+    public String toaddOne(){
         return "aadaad";
     }
     @RequestMapping("toupdate")
@@ -50,5 +33,17 @@ public class PageController {
         return "update";
     }
 
+    @RequestMapping("toMerchant")
+    public  String toMerchant(){
+        return "merchantsList";
+    }
 
+    @RequestMapping("toadd")
+    public  String toadd(){
+        return "add";
+    }
+    @RequestMapping("toUpdateMerchant")
+    public  String toUpdateMerchant(){
+        return "updateMerchart";
+    }
 }
