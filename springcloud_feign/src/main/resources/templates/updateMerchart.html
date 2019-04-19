@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .myrow{
+            margin-bottom:10px
+        }
+    </style>
+</head>
+<body>
+
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="name">商品名称</label>
+    </div>
+    <div class="col-md-4">
+        <input type="hidden" id="id" name="id">
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="col-md-2">
+        <label for="type">商品类型</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="type" name="type">
+    </div>
+</div>
+
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="standard">商品规格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="standard" name="standard">
+    </div>
+    <div class="col-md-2">
+        <label for="image">商品图片</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="image" name="image">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="counts">商品重量</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="counts" name="counts">
+    </div>
+    <div class="col-md-2">
+        <label for="expirationdate">商品保质期</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="expirationdate" name="expirationdate">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="repertory">商品库存</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="repertory" name="repertory">
+    </div>
+    <div class="col-md-2">
+        <label for="goodreputation">商品好评</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="goodreputation" name="goodreputation">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="peoplebuy">购买人数</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="peoplebuy" name="peoplebuy">
+    </div>
+    <div class="col-md-2">
+        <label for="referencenumber">批准文号</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="referencenumber" name="referencenumber">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="swag">推广商品</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="swag" name="swag">
+    </div>
+    <div class="col-md-2">
+        <label for="promotionofgoods">活动商品</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="swagprice">推广商品价格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="swagprice" name="swagprice">
+    </div>
+    <div class="col-md-2">
+        <label for="promotionprice">活动商品价格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="promotionprice" name="promotionprice">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="invoicetype">发票类型</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoicetype" name="invoicetype">
+    </div>
+    <div class="col-md-2">
+        <label for="invoicecontents">发票内容</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="invoiceprice">发票金额</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoiceprice" name="invoiceprice">
+    </div>
+    <div class="col-md-2">
+        <label for="info">商品描述</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="info" name="info">
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        $('.date').datetimepicker({
+            language: 'zh-CN',//显示中文
+            //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+            format: 'yyyy-mm-dd',//显示格式
+            minView: "month",//设置只显示到月份
+            initialDate: new Date(),//初始化当前日期
+            autoclose: true,//选中自动关闭
+            todayBtn: true//显示今日按钮
+        });
+    })
+</script>
+</html>
