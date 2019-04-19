@@ -2,7 +2,6 @@ package com.jk.mapper;
 
 import com.jk.model.MerchantBean;
 import com.jk.model.NavBean;
-import com.jk.model.TreeBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

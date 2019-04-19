@@ -4,6 +4,7 @@ import com.jk.model.MerchantBean;
 import com.jk.model.NavBean;
 import com.jk.model.TreeBean;
 import com.jk.service.MerchantServiceFeign;
+import com.jk.service.serviceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;

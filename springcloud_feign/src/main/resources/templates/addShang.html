@@ -106,7 +106,7 @@
     function openAddDialog(){
         bootbox.dialog({
             title:'添加用户',
-            message: createAddContent("./toadd"),
+            message: createAddContent("../page/toaddOne"),
             closeButton: true,//是否显示关闭按钮
             buttons : {
                 "success" : {
@@ -190,11 +190,11 @@
                         /* data:{
                              id:id
                          },*/
-                        dataType:'json',
+                        // dataType:'json',
                         success:function(){
-                       /*     $('#userTable').bootstrapTable('refresh');*/
+                            $("#userTable").bootstrapTable('refresh');
                             alert("删除成功")
-                            window.location.href="./tomain";
+                            // window.location.href="../page/tomain";
                         }
                     })
                 }
@@ -277,7 +277,7 @@
     function openUpdate(id){
         bootbox.dialog({
             title:'修改用户',
-            message: createAddContent("./toupdate"),
+            message: createAddContent("../page/toupdate"),
             closeButton: true,//是否显示关闭按钮
             buttons : {
                 "success" : {

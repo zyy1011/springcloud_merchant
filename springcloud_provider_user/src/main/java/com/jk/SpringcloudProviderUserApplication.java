@@ -5,13 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.jk"})
 @EnableEurekaClient
 @MapperScan("com.jk.mapper")
-public class SpringcloudProviderApplication {
+public class SpringcloudProviderUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringcloudProviderApplication.class, args);
+        SpringApplication.run(SpringcloudProviderUserApplication.class, args);
     }
 
 }
