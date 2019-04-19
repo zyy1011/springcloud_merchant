@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.UserMapper">
+    <!--查询角色-->
+    <select id="findRolePage"  resultType="com.jk.model.Role">
+
+select * from yy_role
+
+</select>
+    <insert  id="saveUser" parameterType="com.jk.model.UserBean" useGeneratedKeys="true" keyProperty="id">
+
+  insert  into yy_user (name,password,age,cid)
+values(#{name},#{password},#{age},#{cid})
+
+   </insert>
+    <select id="getUserInfoAccount" parameterType="map" resultType="int">
+
+   select count(1) from yy_user where name=#{value}
+
+   </select>
+    <insert id="saveUserRole">
+        insert into yy_user_role (userid,roleid) values
+        <foreach separator="," item="roleid" collection="split">(#{userid},#{roleid}) </foreach>
+    </insert>
+
+    <select id="UserAccount" parameterType="string"  resultType="com.jk.model.UserBean">
+
+   select * from yy_user where  name = #{value}
+
+   </select>
+
+
+    <select id="findUserList" resultType="com.jk.model.Shang">
+        select * from yz_Shang
+        limit #{start},#{rows}
+    </select>
+
+    <select id="findUserCount" parameterType="com.jk.model.Shang" resultType="int">
+        select count(*) from yz_Shang
+    </select>
+
+    <insert id="saveMovie" parameterType="com.jk.model.Shang">
+        insert into yz_Shang (name,type,standard,info,image,expirationdate,area,principal,status,createtime,number,certification)
+         values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{area},#{principal},#{status},#{createtime},#{number},#{certification})
+    </insert>
+
+    <delete id="deleteOne" parameterType="int" >
+        delete from yz_Shang where id=#{id}
+    </delete>
+    <select id="findMovieById" parameterType="int" resultType="com.jk.model.Shang">
+          select m.id,m.name,m.type,m.standard,m.info,m.image,m.expirationdate,m.area,m.principal,m.status,m.createtime,m.number,m.certification from yz_Shang m  where m.id=#{id}
+    </select>
+    <update id="updateMovie" parameterType="int">
+    update yz_Shang m set m.name=#{name},m.type=#{type},
+        m.standard=#{standard},m.info=#{info},m.image=#{image},
+        m.area=#{area},m.principal=#{principal},m.status=#{status},
+        m.createtime=#{createtime},m.number=#{number},m.certification=#{certification} where m.id=#{id}
+
+    </update>
+    <delete id="deleteTemplate" parameterType="int">
+    delete from yz_Shang where id in
+    <foreach collection="ids" item="item" open="(" close=")" separator=",">
+        #{item}
+    </foreach>
+</delete>
+
+
+
+</mapper>
