@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="../js/easyui1.5/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="../js/easyui1.5/themes/icon.css"/>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css"/>
+    <link rel="stylesheet" href="../js/kindeditor-4.1.10/themes/default/default.css"/>
+    <script src="../js/easyui1.5/jquery.min.js"></script>
+    <script src="../js/easyui1.5/jquery.easyui.min.js"></script>
+    <script src="../js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script src="../js/uploadify/jquery.uploadify.js"></script>
+    <script src="../js/kindeditor-4.1.10/kindeditor-all.js"></script>
+
+
+</head>
+<body>
+<div id="LoginDialog" class="easyui-dialog" data-options="title:'注册',
+
+  buttons:[
+  {
+   text:'注册',
+   iconCls:'icon-ok',
+   handler:function(){
+    reg();
+   }
+  }]" style="width:1000px;height:500px;">
+
+
+        <form  id="regForm" method="post">
+            <table>
+                <tr>
+                    <td>名称:</td>
+                    <td><input class="easyui-textbox" id="userName"  type="text" name="name">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码:</td>
+                    <td><input class="easyui-textbox"  type="password" name="password"  id="pwd">
+                    </td>
+                </tr>
+                <tr>
+                    <td>确认密码:</td>
+                    <td><input class="easyui-textbox" type="password" name="password2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>年龄:</td>
+                    <td><input class="easyui-textbox" type="text" name="age" id="age">
+                    </td>
+                </tr>
+                <tr>
+                    <td>身份证:</td>
+                    <td><input class="easyui-textbox" type="text" name="cid"  id="aa">
+                    </td>
+                </tr>
+                <tr>
+                    <td>角色</td>
+                    <td>
+                        <input class="easyui-combobox" name="roleid" id="role">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</div>
+</body>
+<script type="text/javascript">
+
+    function reg(){
+        var password = $("input[name='password']").val();
+        var password2 = $("input[name='password2']").val();
+        if(password != password2){
+            $.messager.alert('提示','俩次不一致','errer');
+            return false;
+        }
+       /* $('#regForm').form('submit',{
+            url:'../user/reg',
+            success:function(data){
+              /!*data = JSON.parse(data);*!/
+                if(data){
+                    $.messager.alert('提示','注册失败','errer');
+                }else{
+                    $.messager.alert('提示','注册成功','info');
+                    window.location.href='../tolong';
+                }
+            }
+        })*/
+
+        var name = $("#userName").val();
+        var password = $("#aa").val();
+        var age = $("#age").val();
+        var cid = $("#aa").val();
+        var roleid = $("#role").val();
+        $.ajax({
+            url:'../user/reg',
+            contentType:'application/json',
+            type:'post',
+            // data:$("#bookForm").serialize(),
+            data:JSON.stringify({
+                name:name,
+                password:password,
+                age: age,
+                cid: cid,
+                roleid: roleid
+            }),
+            success:function(data){
+                $.messager.alert('提示','注册成功','info');
+                window.location.href='../tolong';
+            }
+        });
+    }
+
+    $(function(){
+        initRole();
+    })
+    function initRole(){
+        $("#role").combobox({
+            url:"../user/findRolePage",
+            valueField:"id",
+            textField:"name",
+            multiple:true
+        })
+    }
+    //身份证校验
+
+    // chickCard
+    var fun = function (){
+        var card = $("#aa").val();
+        // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if(reg.test(card) === false){
+            alert("身份证输入不合法");
+            $("#aa").val("");
+            return false;
+        }
+    }
+
+
+
+
+
+</script>
+</html>
