@@ -48,4 +48,7 @@ public interface UserService {
     @ResponseBody
     void deleteBrand(@RequestParam("ids") Integer[] ids);
 
+    @GetMapping("sendMsg")
+    @ResponseBody
+    String sendMsg(String message);
 }

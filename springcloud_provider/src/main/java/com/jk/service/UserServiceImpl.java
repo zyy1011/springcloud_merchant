@@ -10,10 +10,13 @@
  */
 package com.jk.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jk.mapper.UserMapper;
 import com.jk.model.Role;
 import com.jk.model.Shang;
 import com.jk.model.UserBean;
+import com.jk.utils.HttpClientUtil;
 import com.jk.utils.Md5Util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +151,24 @@ public class UserServiceImpl implements UserService {
    public void deleteBrand(Integer[] ids) {
        usermapper.deleteTemplate(ids);
     }
+
+    @Override
+    public String sendMsg(String message) {
+        String url = "http://api.qingyunke.com/api.php";
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("key", "free");
+        params.put("msg", message);
+        String returnStr = HttpClientUtil.get(url, params);
+        JSONObject parseObject = JSON.parseObject(returnStr);
+        int result = parseObject.getIntValue("result");
+        if(result==0){//成功返回0 如果等于0  就是成功
+            //将信息内容转成字符串对象
+            String content = parseObject.getString("content");
+            return content;
+        }
+        return "接口调用失败";
+    }
+
 
 
 }

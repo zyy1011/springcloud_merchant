@@ -51,4 +51,8 @@ public class PageController {
     public String toUpdateMerchant() {
         return "updateMerchart";
     }
+    @RequestMapping("toRobot")
+    public String toRobot() {
+        return "robot";
+    }
 }

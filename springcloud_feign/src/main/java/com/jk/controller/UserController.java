@@ -10,15 +10,19 @@
  */
 package com.jk.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.jk.model.Role;
 import com.jk.model.Shang;
 import com.jk.model.UserBean;
 import com.jk.service.UserService;
+import com.jk.utils.HttpClientUtil;
+import com.jk.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -100,6 +104,26 @@ public class UserController {
     @ResponseBody
     public void deleteBrand(@PathVariable Integer[] ids){
         userService.deleteBrand(ids);
+    }
+
+  /*  @GetMapping("sendMsg")
+    @ResponseBody
+    public String sendMsg(@RequestParam("message") String message){
+        return userService.sendMsg(message);
+    }*/
+
+
+    @RequestMapping("chatRobot")
+    @ResponseBody
+    private JsonNode chatRobot(String str) throws IOException {
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("key", "free");
+        params.put("appid", 0);
+        params.put("msg", str);
+        String string = HttpClientUtil.get("http://api.qingyunke.com/api.php?key=free&appid=0&msg=", params);
+        JsonNode jsonToJsonNode = JsonUtil.jsonToJsonNode(string);
+        JsonNode jsonNode = jsonToJsonNode.get("content");
+        return jsonNode;
     }
 
 
