@@ -142,10 +142,11 @@ public class UserServiceImpl implements UserService {
         usermapper.updateMovie(shang);
     }
 
-    @Override
-    @ResponseBody
-    public void deleteBrand(Integer[] ids) {
-        usermapper.deleteTemplate(ids);
+
+   @Override
+   @ResponseBody
+   public void deleteBrand(Integer[] ids) {
+       usermapper.deleteTemplate(ids);
     }
 
 

@@ -115,5 +115,11 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
 
+    @Override
+    @ResponseBody
+    public void deleteBrand(Integer[] ids) {
+        merchantMapper.deleteTemplate(ids);
+    }
+
 
 }

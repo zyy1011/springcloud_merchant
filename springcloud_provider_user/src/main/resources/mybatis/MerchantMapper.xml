@@ -36,4 +36,12 @@
         where m.id=#{id}
     </update>
 
+    <delete id="deleteTemplate" parameterType="int">
+    delete from yy_merchants where id in
+    <foreach collection="ids" item="item" open="(" close=")" separator=",">
+        #{item}
+    </foreach>
+    </delete>
+
+
 </mapper>

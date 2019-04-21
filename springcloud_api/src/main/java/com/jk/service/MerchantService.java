@@ -37,4 +37,10 @@ public interface MerchantService {
     @PutMapping("updateMerchant")
     @ResponseBody
     void updateMerchant(@RequestBody MerchantBean merchantBean);
+
+     //删除 模板
+    @DeleteMapping("deleteTemplate")
+    @ResponseBody
+    void deleteBrand(@RequestParam("ids") Integer[] ids);
+
 }

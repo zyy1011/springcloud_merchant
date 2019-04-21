@@ -26,4 +26,6 @@ public interface MerchantMapper {
     void saveMerchant(MerchantBean merchantBean);
     //修改
     void updateMerchant(MerchantBean merchantBean);
+
+    void deleteTemplate(@Param("ids")Integer[] ids);
 }

@@ -9,110 +9,134 @@
         }
     </style>
 </head>
+
 <body>
-<div class="row myrow">
-    <div class="col-md-2">
-        <input type="hidden"  id="id" name="id">
-        <label for="name">用户名字</label>
-    </div>
-    <div class="col-md-4">
+<div class="modal-body">
+    <!-- 新选项卡 -->
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                人员基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#linkman" data-toggle="tab">
+                店铺基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#bank" data-toggle="tab">
+                执照证明
+            </a>
+        </li>
+    </ul>
 
-        <input type="text" class="form-control" id="name" name="name">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">类型</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="type" name="type">
+    <!-- 选项卡下内容 -->
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>用户名字</td><td>
+                    <input type="hidden"  id="id" name="id">
+                    <input type="text" id="name" name="name" style="border:0px;" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>负责人姓名</td>
+                    <td>
+                        <input type="text" class="form-control" id="principal" name="principal" style="border:0px;">
+                    </td>
+                </tr><tr>
+                <td>店铺人数</td>
+                <td>
+                    <input type="number" class="form-control" id="number" name="number" style="border:0px;" onblur="dianpurrnshu()">
+                </td>
+            </tr>
+            </table>
+        </div>
 
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">商户规模</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="sex" name="standard">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">商户描述</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="info" name="info">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">负责人</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="principal" name="principal">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">店铺人数</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="number" name="number">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">地址</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="area" name="area">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">店面照片</label>
-    </div>
-    <div class="col-md-4">
-        <input type="file" id="butOne">
-        <input type="hidden" id="imagea" name="image">
-        <div id="showImgDiv" style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
-            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
+
+        <!-- 选项卡下内容 -->
+        <div class="tab-pane fade" id="linkman">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>类型</td>
+                    <td>
+                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商户规模</td>
+                    <td>
+                        <input type="text" class="form-control" id="sex" name="standard" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商户描述</td>
+                    <td>
+                        <input type="text" class="form-control" id="info" name="info" style="border:0px;width: 300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td>
+                        <input type="text" class="form-control" id="area" name="area" style="border:0px;width: 300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>开店时间</td>
+                    <td> <input type="text" class="form-control date" id="createtime" name="createtime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否立即开店</td>
+                    <td> <input type="text" class="form-control " id="status" name="status">
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div id="showBars"></div>
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">开店资格</label>
-    </div>
-    <div class="col-md-4">
-        <input type="file" id="butTwo">
-        <input type="hidden" id="certification" name="certification">
-        <div id="showImgDiv2" style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
-            <img src="" id="testimg2" style="width: 150px;height: 150px;"/>
+
+
+        <div class="tab-pane fade" id="bank">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>店面照片</td>
+                    <td><input type="file" id="butOne">
+                        <input type="hidden" id="imagea" name="image">
+                        <div id="showImgDiv"
+                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
+                        </div>
+                        <div id="showBars"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>营业执照</td>
+                    <td><input type="file" id="butTwo">
+                        <input type="hidden" id="certification" name="certification">
+                        <div id="showImgDiv2"
+                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                            <img src="" id="testimg2" style="width: 150px;height: 150px;"/>
+                        </div>
+                        <div id="showBars2"></div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div id="showBars2"></div>
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="createTime">开店时间</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control date" id="createtime" name="createtime">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="createTime">是否立即开店</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control " id="status" name="status">
     </div>
 </div>
 </body>
 <script type="text/javascript">
+
+    //店铺人数
+    function dianpurrnshu() {
+
+        var number = $("#number").val();
+        if(number<0){
+            $("#number").val("0");
+        }
+    }
+
+
 
     $(function(){
         $('.date').datetimepicker({

@@ -101,4 +101,14 @@ public class MerchantController {
         redisTemplate.delete("powertree");
     }
 
+
+
+    //批量删除
+    @DeleteMapping("deleteBrand/{ids}")
+    @ResponseBody
+    public void deleteBrand(@PathVariable Integer[] ids){
+        deleteRedis();
+        merchantService.deleteBrand(ids);
+    }
+
 }
