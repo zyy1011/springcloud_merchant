@@ -48,4 +48,5 @@ public interface UserService {
     @ResponseBody
     void deleteBrand(@RequestParam("ids") Integer[] ids);
 
+
 }

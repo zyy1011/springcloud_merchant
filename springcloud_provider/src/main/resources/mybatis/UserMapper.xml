@@ -64,6 +64,4 @@ values(#{name},#{password},#{age},#{cid})
     </foreach>
 </delete>
 
-
-
 </mapper>

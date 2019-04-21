@@ -35,4 +35,5 @@ public interface UserMapper {
 
     //删除模板
     void deleteTemplate(@Param("ids") Integer[] ids);
+    
 }

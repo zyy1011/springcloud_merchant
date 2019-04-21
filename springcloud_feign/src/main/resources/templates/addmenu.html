@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入jquery的js -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
+
+    <!-- 引入bootstrap的css、js -->
+    <link type="text/css" rel="stylesheet" href="../js/bootstrap3/css/bootstrap.css">
+    <script type="text/javascript" src="../js/bootstrap3/js/bootstrap.js"></script>
+    <!-- 引入bootstrap table的css、js -->
+    <link type="text/css" rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!-- 引入bootstrap bootbox的css、js -->
+    <script type="text/javascript" src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <!-- 引入bootstrap datetime的css、js -->
+    <link type="text/css" rel="stylesheet" href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 引入bootstrap fileinput的css、js -->
+    <link type="text/css" rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <style type="text/css">
+        .myrow{
+            margin-bottom:10px
+        }
+        /*全局样式*/
+        body{ text-align:center}
+        #divcss5{margin:0 auto;border:1px solid #000;width:800px;height:550px}
+
+        /*导航栏*/
+        ul#nav{ width:100%; height:60px; background:#00A2CA;margin:0 auto}
+        ul#nav li{display:inline; height:60px}
+        ul#nav li a{display:inline-block; padding:0 20px; height:60px; line-height:60px;
+            color:#FFF; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px}
+    </style>
+</head>
+<body>
+<ul id="nav">
+    <li><font size="7px">商家菜单</font></li>
+</ul>
+<div class="modal-body"  id="divcss5">
+    <!-- 新选项卡 -->
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                人员基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#linkman" data-toggle="tab">
+                店铺基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#leixing" data-toggle="tab">
+                类型
+            </a>
+        </li>
+
+        <li>
+            <a href="#bank" data-toggle="tab">
+                执照证明
+            </a>
+        </li>
+
+    </ul>
+
+
+
+    <!-- 选项卡下内容 -->
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>用户名字</td>
+                    <td>
+                        <input type="hidden" id="id" name="id">
+                        <input type="text" class="form-control" id="name" name="name" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品类型</td>
+                    <td>
+                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品规格</td>
+                    <td>
+                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <!-- 选项卡下内容 -->
+        <div class="tab-pane fade" id="linkman">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>商品重量</td>
+                    <td>
+                        <input type="text" class="form-control" id="counts" name="counts" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品保质期</td>
+                    <td>
+                        <input type="text" class="form-control date" id="expirationdate" name="expirationdate"
+                               style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品库存</td>
+                    <td>
+                        <input type="text" class="form-control" id="repertory" name="repertory" style="border:0px;">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>购买人数</td>
+                    <td>
+                        <input type="text" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>推广商品</td>
+                    <td>
+                        <input type="text" class="form-control " id="swag" name="swag" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>活动商品</td>
+                    <td>
+                        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods"
+                               style="border:0px;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- 选项卡下内容 -->
+        <div class="tab-pane fade" id="leixing">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>发票类型</td>
+                    <td>
+                        <input type="text" class="form-control" id="invoicetype" name="invoicetype" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>发票内容</td>
+                    <td>
+                        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents"
+                               style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>发票金额</td>
+                    <td>
+                        <input type="text" class="form-control" id="invoiceprice" name="invoiceprice"
+                               style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品描述</td>
+                    <td>
+                        <input type="text" class="form-control" id="info" name="info" style="border:0px;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="bank">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>商品图片</td>
+                    <td>
+                        <input type="file" id="butOne">
+                        <input type="hidden" id="image" name="image">
+                        <div id="showImgDiv"
+                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
+                        </div>
+                        <div id="showBars"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>推广商品价格</td>
+                    <td>
+                        <input type="text" class="form-control " id="swagprice" name="swagprice" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>活动商品价格</td>
+                    <td>
+                        <input type="text" class="form-control" id="promotionprice" name="promotionprice"
+                               style="border:0px;">
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+        <button type="button" class="btn btn-primary"  onclick="addMenu()">　提　　交　</button>
+</div>
+
+<!--<div class="container-fluid" align="center">
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="name">商品名称</label>
+    </div>
+    <div class="col-md-4">
+
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="col-md-2">
+        <label for="type">商品类型</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="type" name="type">
+    </div>
+</div>
+
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="standard">商品规格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="standard" name="standard">
+    </div>
+    <div class="col-md-2">
+        <label for="image">商品图片</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="image" name="image">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="counts">商品重量</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="counts" name="counts">
+    </div>
+    <div class="col-md-2">
+        <label for="expirationdate">商品保质期</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control date" id="expirationdate" name="expirationdate">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="repertory">商品库存</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="repertory" name="repertory">
+    </div>
+
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="peoplebuy">购买人数</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="peoplebuy" name="peoplebuy">
+    </div>
+    <div class="col-md-2">
+        <label for="updown">上下架</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="updown" name="updown">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="swag">推广商品</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control " id="swag" name="swag">
+    </div>
+    <div class="col-md-2">
+        <label for="promotionofgoods">活动商品</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="swagprice">推广商品价格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control " id="swagprice" name="swagprice">
+    </div>
+    <div class="col-md-2">
+        <label for="promotionprice">活动商品价格</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="promotionprice" name="promotionprice">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="invoicetype">发票类型</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoicetype" name="invoicetype">
+    </div>
+    <div class="col-md-2">
+        <label for="invoicecontents">发票内容</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents">
+    </div>
+</div>
+<div class="row myrow">
+    <div class="col-md-2">
+        <label for="invoiceprice">发票金额</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="invoiceprice" name="invoiceprice">
+    </div>
+    <div class="col-md-2">
+        <label for="info">商品描述</label>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="form-control" id="info" name="info">
+    </div>
+</div>
+    <button type="button" class="btn btn-primary"  onclick="addMenu()">　提　　交　</button>
+</div>-->
+</body>
+<script type="text/javascript">
+    $(function(){
+        $('.date').datetimepicker({
+            language: 'zh-CN',//显示中文
+            //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+            format: 'yyyy-mm-dd',//显示格式
+            minView: "month",//设置只显示到月份
+            initialDate: new Date(),//初始化当前日期
+            autoclose: true,//选中自动关闭
+            todayBtn: true//显示今日按钮
+        });
+    })
+function addMenu(){
+    var name = $("#name").val();
+    var type = $("#type").val();
+    var standard = $("#standard").val();
+    var image = $("#image").val();
+    var info = $("#info").val();
+    var counts = $("#counts").val();
+    var expirationdate = $("#expirationdate").val();
+    var repertory = $("#repertory").val();
+    var peoplebuy = $("#peoplebuy").val();
+    var updown = $("#updown").val();
+    var swag = $("#swag").val();
+    var promotionofgoods = $("#promotionofgoods").val();
+    var swagprice = $("#swagprice").val();
+    var promotionprice = $("#promotionprice").val();
+    var invoicetype = $("#invoicetype").val();
+    var invoicecontents = $("#invoicecontents").val();
+    var invoiceprice = $("#invoiceprice").val();
+    var referencenumber = $("#referencenumber").val();
+    $.ajax({
+        url:'../merchant/saveMerchant',
+        contentType:'application/json',
+        type:'post',
+        // data:$("#bookForm").serialize(),
+        data:JSON.stringify({
+            'name':name,
+            'type':type,
+            'image':image,
+            'standard':standard,
+            'info':info,
+            'counts':counts,
+            'expirationdate':expirationdate,
+            'repertory':repertory,
+            'peoplebuy':peoplebuy,
+            'referencenumber':referencenumber,
+            'swag':swag,
+            'promotionofgoods':promotionofgoods,
+            'swagprice':swagprice,
+            'promotionprice':promotionprice,
+            'invoicetype':invoicetype,
+            'invoicecontents':invoicecontents,
+            'invoiceprice':invoiceprice
+        }),
+        success:function(){
+            location.href="../page/tosuccess";
+
+        }
+    });
+}
+
+    //文件域的id
+    $("#butOne").uploadify({
+        //前台请求后台的url 不可忽略的参数
+        'uploader' :"../upload/upImg",
+        //插件自带 不可忽略的参数
+        'swf' : "../uploadify/uploadify.swf",
+        //撤销按钮的图片路径
+        'cancelImg' : "../uploadify/uploadify-cancel.png",
+        //如果为true 为自动上传 在文件后 为false 那么它就要我们自己手动点上传按钮
+        'auto' : true,
+        //可以同时选择多个文件 默认为true 不可忽略
+        'multi' : false,
+        //给上传按钮设置文字
+        'buttonText' : "上传头像",
+        //上传后队列是否消失
+        'removeCompleted' : true,
+        'removeTimeout' : 1,
+        //上传文件的个数
+        'uploadLimit' : 2,
+        'fileTypeExts' : "*.jpg;*.jpge;*.gif;*.png",
+        'fileSizeLimit' : "2MB",
+        //给div的进度条加背景 不可忽略
+        'queueID' : "showBars",
+        // controller层方法中接收文件的参数名--------artImg
+        'fileObjName' : "artImg",
+        //上传成功后的回调函数
+        'onUploadSuccess' : function(file, data, response) {
+            $("#testimg").prop("src",data);
+            $("#image").val(data);
+        }
+    })
+
+    //文件域的id
+    $("#butTwo").uploadify({
+        //前台请求后台的url 不可忽略的参数
+        'uploader' :"../upload/upImg",
+        //插件自带 不可忽略的参数
+        'swf' : '../uploadify/uploadify.swf',
+        //撤销按钮的图片路径
+        'cancelImg' : '../uploadify/uploadify-cancel.png',
+        //如果为true 为自动上传 在文件后 为false 那么它就要我们自己手动点上传按钮
+        'auto' : true,
+        //可以同时选择多个文件 默认为true 不可忽略
+        'multi' : false,
+        //给上传按钮设置文字
+        'buttonText' : '上传头像',
+        //上传后队列是否消失
+        'removeCompleted' : true,
+        'removeTimeout' : 1,
+        //上传文件的个数
+        'uploadLimit' : 2,
+        'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+        'fileSizeLimit' : '2MB',
+        //给div的进度条加背景 不可忽略
+        'queueID' : 'showBars2',
+        // controller层方法中接收文件的参数名--------artImg
+        'fileObjName' : 'artImg',
+        //上传成功后的回调函数
+        'onUploadSuccess' : function(file, data, response) {
+            $("#testimg2").prop("src",data);
+            $("#certification").val(data);
+        }
+    })
+</script>
+</html>

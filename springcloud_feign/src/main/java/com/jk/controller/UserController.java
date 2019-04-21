@@ -74,6 +74,7 @@ public class UserController {
     @ResponseBody
     public void saveMovie(@RequestBody Shang shang){
         userService.saveMovie(shang);
+        System.out.println("-------------------------"+shang);
     }
 
     @DeleteMapping("deleteOne/{id}")
@@ -101,6 +102,8 @@ public class UserController {
     public void deleteBrand(@PathVariable Integer[] ids){
         userService.deleteBrand(ids);
     }
+
+
 
 
 

@@ -17,6 +17,8 @@ public class UserBean {
 
 
 
+
+
     public void setRoleid(String roleid) {
         this.roleid = roleid;
     }

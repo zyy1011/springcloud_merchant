@@ -51,4 +51,24 @@ public class PageController {
     public String toUpdateMerchant() {
         return "updateMerchart";
     }
+
+    @RequestMapping("toenter")
+    public String toenter() {
+        return "enter";
+    }
+
+    @RequestMapping("toaddEnter")
+    public String toaddEnter() {
+        return "addEnter";
+    }
+
+    @RequestMapping("tosuccess")
+    public String tosuccess() {
+        return "success";
+    }
+
+    @RequestMapping("toaddmenu")
+    public String toaddmenu() {
+        return "addmenu";
+    }
 }
