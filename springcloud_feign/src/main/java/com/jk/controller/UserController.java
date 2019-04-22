@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.jk.model.Role;
 import com.jk.model.Shang;
 import com.jk.model.UserBean;
+import com.jk.model.caipinBean;
 import com.jk.service.UserService;
 import com.jk.utils.HttpClientUtil;
 import com.jk.utils.JsonUtil;
@@ -71,6 +72,12 @@ public class UserController {
     public HashMap<String,Object> findMoviePage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows){
         return userService.findMoviePage(page,rows);
     }
+    //查询用户表
+    @GetMapping("queryCaipin")
+    @ResponseBody
+    public HashMap<String,Object> queryCaipin(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows){
+        return userService.queryCaipin(page,rows);
+    }
 
 
     //新增
@@ -79,11 +86,22 @@ public class UserController {
     public void saveMovie(@RequestBody Shang shang){
         userService.saveMovie(shang);
     }
+    //新增菜品
+    @PostMapping("saveCaiPin")
+    @ResponseBody
+    public void saveCaiPin(@RequestBody caipinBean caipin){
+        userService.saveCaiPin(caipin);
+    }
 
     @DeleteMapping("deleteOne/{id}")
     @ResponseBody
     public void deleteOne(@PathVariable("id") Integer id){
         userService.deleteOne(id);
+    }
+    @DeleteMapping("deletecaipin/{id}")
+    @ResponseBody
+    public void deletecaipin(@PathVariable("id") Integer id){
+        userService.deletecaipin(id);
     }
 
 
@@ -93,10 +111,21 @@ public class UserController {
         return userService.findMovieById(id);
     }
 
+    @GetMapping("findCaPinById/{id}")
+    @ResponseBody
+    public caipinBean findCaPinById(@PathVariable("id") Integer id){
+        return userService.findCaPinById(id);
+    }
+
     @PutMapping("updateMovie")
     @ResponseBody
     public void updateMovie(@RequestBody Shang shang){
         userService.updateMovie(shang);
+    }
+    @PutMapping("updateCaiPin")
+    @ResponseBody
+    public void updateCaiPin(@RequestBody caipinBean caipin){
+        userService.updateCaiPin(caipin);
     }
 
     //删除品牌
@@ -105,12 +134,15 @@ public class UserController {
     public void deleteBrand(@PathVariable Integer[] ids){
         userService.deleteBrand(ids);
     }
-
-  /*  @GetMapping("sendMsg")
+    //删除
+    @DeleteMapping("deleteCaiPin/{ids}")
     @ResponseBody
-    public String sendMsg(@RequestParam("message") String message){
-        return userService.sendMsg(message);
-    }*/
+    public void deleteCaiPin(@PathVariable Integer[] ids){
+        userService.deleteCaiPin(ids);
+    }
+
+
+
 
 
     @RequestMapping("chatRobot")

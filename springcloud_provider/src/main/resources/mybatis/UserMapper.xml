@@ -30,13 +30,21 @@ values(#{name},#{password},#{age},#{cid})
    </select>
 
 
+
     <select id="findUserList" resultType="com.jk.model.Shang">
         select * from yz_Shang
+        limit #{start},#{rows}
+    </select>
+    <select id="queryCaipin" resultType="com.jk.model.caipinBean">
+        select * from yz_table
         limit #{start},#{rows}
     </select>
 
     <select id="findUserCount" parameterType="com.jk.model.Shang" resultType="int">
         select count(*) from yz_Shang
+    </select>
+    <select id="queryCaipinCount" parameterType="com.jk.model.caipinBean" resultType="int">
+        select count(*) from yz_table
     </select>
 
     <insert id="saveMovie" parameterType="com.jk.model.Shang">
@@ -44,17 +52,33 @@ values(#{name},#{password},#{age},#{cid})
          values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{area},#{principal},#{status},#{createtime},#{number},#{certification})
     </insert>
 
+    <insert id="saveCaiPin" parameterType="com.jk.model.caipinBean">
+        insert into yz_table (name,type,info,image,area,status,number,price)
+         values (#{name},#{type},#{info},#{image},#{area},#{status},#{number},#{price})
+    </insert>
+
     <delete id="deleteOne" parameterType="int" >
         delete from yz_Shang where id=#{id}
     </delete>
+    <delete id="deletecaipin" parameterType="int" >
+        delete from yz_table where id=#{id}
+    </delete>
     <select id="findMovieById" parameterType="int" resultType="com.jk.model.Shang">
-          select m.id,m.name,m.type,m.standard,m.info,m.image,m.expirationdate,m.area,m.principal,m.status,m.createtime,m.number,m.certification from yz_Shang m  where m.id=#{id}
+          select m.id,m.name,m.type,m.standard,m.info,m.image,m.expirationdate,m.area,m.principal,m.status,
+          m.createtime,m.number,m.certification from yz_Shang m  where m.id=#{id}
     </select>
-    <update id="updateMovie" parameterType="int">
+    <update id="updateMovie" >
     update yz_Shang m set m.name=#{name},m.type=#{type},
         m.standard=#{standard},m.info=#{info},m.image=#{image},
         m.area=#{area},m.principal=#{principal},m.status=#{status},
         m.createtime=#{createtime},m.number=#{number},m.certification=#{certification} where m.id=#{id}
+
+    </update>
+    <update id="updateCaiPin">
+    update yz_table s set s.name=#{name},s.type=#{type},
+        s.info=#{info},s.image=#{image},
+        s.area=#{area},s.status=#{status},
+         s.number=#{number},s.price=#{price} where s.id=#{id}
 
     </update>
     <delete id="deleteTemplate" parameterType="int">
@@ -63,6 +87,19 @@ values(#{name},#{password},#{age},#{cid})
         #{item}
     </foreach>
 </delete>
+    <delete id="deleteCaiPin" parameterType="int">
+    delete from yz_table where id in
+    <foreach collection="ids" item="item" open="(" close=")" separator=",">
+        #{item}
+    </foreach>
+</delete>
+
+
+    <select id="findCaPinById" parameterType="int" resultType="com.jk.model.caipinBean">
+          select s.id,s.name,s.type,s.info,s.image,s.area,s.status,s.number,s.price from yz_table s  where s.id=#{id}
+    </select>
+
+
 
 
 

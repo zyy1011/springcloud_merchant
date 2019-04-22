@@ -55,4 +55,16 @@ public class PageController {
     public String toRobot() {
         return "robot";
     }
+    @RequestMapping("tocaipin")
+    public String tocaipin() {
+        return "caipin";
+    }
+    @RequestMapping("toAddCaiPin")
+    public String toAddCaiPin() {
+        return "addCaiPin";
+    }
+    @RequestMapping("toupdateCaiPin")
+    public String toupdateCaiPin() {
+        return "updateCaiPin";
+    }
 }
