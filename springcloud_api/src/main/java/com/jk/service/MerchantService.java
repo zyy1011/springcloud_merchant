@@ -37,4 +37,5 @@ public interface MerchantService {
     @PutMapping("updateMerchant")
     @ResponseBody
     void updateMerchant(@RequestBody MerchantBean merchantBean);
+
 }

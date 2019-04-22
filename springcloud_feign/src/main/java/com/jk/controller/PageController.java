@@ -71,4 +71,31 @@ public class PageController {
     public String toaddmenu() {
         return "addmenu";
     }
+
+    @RequestMapping("torobot")
+    public String torobot() {
+        return "robot";
+    }
+
+    @RequestMapping("toleague")
+    public String toleague() {
+        return "league";
+    }
+
+
+    @RequestMapping("toDistribution")
+    public String toDistribution() {
+        return "Distribution";
+    }
+
+    @RequestMapping("toDistribution2")
+    public String toDistribution2() {
+        return "Distribution2";
+    }
+
+    @RequestMapping("toDistribution3")
+    public String toDistribution3() {
+        return "Distribution3";
+    }
+
 }

@@ -1,8 +1,12 @@
 package com.jk.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jk.mapper.MerchantMapper;
 import com.jk.model.MerchantBean;
 import com.jk.model.NavBean;
+import com.jk.utils.HttpClientUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -113,7 +117,6 @@ public class MerchantServiceImpl implements MerchantService {
     public void updateMerchant(MerchantBean merchantBean) {
         merchantMapper.updateMerchant(merchantBean);
     }
-
 
 
 }
