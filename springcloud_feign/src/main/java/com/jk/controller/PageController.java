@@ -98,4 +98,9 @@ public class PageController {
         return "Distribution3";
     }
 
+    @RequestMapping("togold")
+    public String togild() {
+        return "gold";
+    }
+
 }

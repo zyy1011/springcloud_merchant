@@ -102,4 +102,10 @@ public class MerchantController {
     }
 
 
+    @GetMapping("addgold")
+    @ResponseBody
+    public void addgold(){
+        merchantService.addgold();
+    }
+
 }

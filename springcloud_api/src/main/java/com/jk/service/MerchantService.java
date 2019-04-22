@@ -38,4 +38,7 @@ public interface MerchantService {
     @ResponseBody
     void updateMerchant(@RequestBody MerchantBean merchantBean);
 
+    @GetMapping("addgold")
+    @ResponseBody
+    void addgold();
 }

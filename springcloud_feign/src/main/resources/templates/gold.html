@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        /*导航栏*/
+        ul#nav{ width:100%; height:60px; background:#00A2CA;margin:0 auto}
+        ul#nav li{display:inline; height:50px}
+        ul#nav li a{display:inline-block; padding:0 20px; height:60px; line-height:60px;
+            color:#FFF; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px}
+
+    </style>
+</head>
+<body>
+        <center>
+        <ul id="nav">
+            <li><font size="6px">支付页面</font></li>
+        </ul>
+        </center>
+        <div style="text-align: center;margin-top: 50px">
+            <img src="../files/6.jpg" style="width: 130px;height: 100px">
+            <br/><br/>
+                <font color="#32cd32" size="4px"><b>支付成功</b></font>
+            <br/><br/><br/>
+        <div>
+            <button type="button" class="btn btn-primary" style="color: #32cd32">　　　完　　成　　　</button>
+        </div>
+        </div>
+
+
+</body>
+<script>
+    $.ajax({
+        url:"../merchant/addgold",
+        type:"get",
+        dataType:"json",
+        success:function (data) {
+            if (data==true) {
+                alert("恭喜您获得5金币")
+            }else{
+                alert("您的金币被快递员带走了")
+            }
+
+        }
+    })
+
+</script>
+</html>

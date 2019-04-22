@@ -118,5 +118,11 @@ public class MerchantServiceImpl implements MerchantService {
         merchantMapper.updateMerchant(merchantBean);
     }
 
+    @Override
+    @ResponseBody
+    public void addgold() {
+        merchantMapper.addgold();
+    }
+
 
 }

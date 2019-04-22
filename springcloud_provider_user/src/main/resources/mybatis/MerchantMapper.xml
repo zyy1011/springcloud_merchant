@@ -36,4 +36,9 @@
         where m.id=#{id}
     </update>
 
+    <!--新增金币-->
+    <insert id="addgold">
+    insert into t_gold (gold,userid) values(#{goid},#{userid})
+    </insert>
+
 </mapper>

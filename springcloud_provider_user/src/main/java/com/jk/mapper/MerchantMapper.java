@@ -26,4 +26,7 @@ public interface MerchantMapper {
     void saveMerchant(MerchantBean merchantBean);
     //修改
     void updateMerchant(MerchantBean merchantBean);
+
+    //增加金币
+    void addgold();
 }
