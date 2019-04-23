@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../highcharts/code/highcharts.js"></script>
+    <script src="../highcharts/code/modules/series-label.js"></script>
+    <script src="../highcharts/code/modules/exporting.js"></script>
+    <script src="../highcharts/code/modules/export-data.js"></script>
+</head>
+<body>
+<div  id="container"></div>
+</body>
+<script type="text/javascript">
+    /*<![CDATA[*/
+
+    $(function() {
+        $.ajax({
+            url: "../merchant/findshopline",
+            dataType: "json",
+            success: function (data) {
+                var chart = Highcharts.chart('container', {
+                    title: {
+                        text: '商品类型折线图'
+                    },
+                    subtitle: {
+                        text: '666'
+                    },
+                    xAxis: {
+                        categories: ['美食', '小吃', '快产便当', '特色菜系', '异国料理', '甜品饮品',
+                            '果蔬生鲜', '商店超市', '鲜花绿植', '医药健康', '早餐','午餐','下午茶','晚餐']
+                    },
+                    yAxis: {
+                        title: {
+                            text: '数量'
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
+                    },
+                    series: [{
+                        name: '商品类型',
+                        colorByPoint: true,
+                        data: data
+                    }],
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+                });
+            }
+        })
+    })
+    /*]]>*/
+</script>
+</html>

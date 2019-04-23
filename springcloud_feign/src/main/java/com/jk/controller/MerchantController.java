@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("merchant")
@@ -108,4 +109,80 @@ public class MerchantController {
         merchantService.addgold();
     }
 
+
+    //折线图
+    @GetMapping("findshopline")
+    @ResponseBody
+    public List<Map<String, Object>> findshopline(){
+        List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+        List<Map<String,Object>> queryUserList = merchantService.findshopline();
+        for (Map<String, Object> map : queryUserList) {
+            Map<String,Object> map1 =new HashMap<String,Object>();
+            Integer  object = Integer.parseInt(map.get("类型").toString()) ;
+            if(object==1){
+                map1.put("name", "美食");
+            }
+            if(object==2){
+                map1.put("name", "小吃");
+            }
+            if(object==3){
+                map1.put("name", "快产便当");
+            }
+            if(object==4){
+                map1.put("name", "特色菜系");
+            }
+            if(object==5){
+                map1.put("name", "异国料理");
+            }
+            if(object==6){
+                map1.put("name", "甜品饮品");
+            }
+            if(object==7){
+                map1.put("name", "果蔬生鲜");
+            }
+            if(object==8){
+                map1.put("name", "商店超市");
+            }
+            if(object==9){
+                map1.put("name", "鲜花绿植");
+            }
+            if(object==10){
+                map1.put("name", "医药健康");
+            }
+            if(object==11){
+                map1.put("name", "早餐");
+            }
+            if(object==12){
+                map1.put("name", "午餐");
+            }
+            if(object==13){
+                map1.put("name", "下午茶");
+            }
+            if(object==14){
+                map1.put("name", "晚餐");
+            }
+            map1.put("y", map.get("总个数"));
+            map1.put("sliced", true);
+            map1.put("selected", true);
+            list.add(map1);
+        }
+        return list;
+    }
+
+    //饼状图
+    @GetMapping("findsystem")
+    @ResponseBody
+    public List<Map<String, Object>> findsystem(){
+        List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+        List<Map<String,Object>> queryUserList = merchantService.findsystem();
+        for (Map<String, Object> map : queryUserList) {
+            Map<String,Object> map1 =new HashMap<String,Object>();
+            map1.put("name", map.get("日期"));
+            map1.put("y", map.get("总个数"));
+            map1.put("sliced", true);
+            map1.put("selected", true);
+            list.add(map1);
+        }
+        return list;
+    }
 }

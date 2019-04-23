@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8"/>
+        <title>Insert title here</title>
+        <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+        <script src="../highcharts/code/highcharts.js"></script>
+        <script src="../highcharts/code/modules/series-label.js"></script>
+        <script src="../highcharts/code/modules/exporting.js"></script>
+        <script src="../highcharts/code/modules/export-data.js"></script>
+        <script src="../highcharts/code/highcharts-more.js"></script>
+
+    </head>
+<body>
+<div id="container" style="min-width:400px;height:400px"></div>
+</body>
+<script type="text/javascript">
+    /*<![CDATA[*/
+
+    $(function(){
+        $.ajax({
+            url:"../merchant/findsystem",
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                        Highcharts.chart('container', {
+                                chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: 5,
+                                        plotShadow: false,
+                                        type: 'pie'
+                                },
+                                title: {
+                                        text: '用户注册比例图'
+                                },
+                                subtitle: {
+                                        text: '用户注册'
+                                },
+                                tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                },
+                                plotOptions: {
+                                        pie: {
+                                                allowPointSelect: true,
+                                                cursor: 'pointer',
+                                                dataLabels: {
+                                                        enabled: true,
+                                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                                        style: {
+                                                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                                        }
+                                                }
+                                        }
+                                },
+                                series: [{
+                                        name: '用户注册对比图',
+                                        colorByPoint: true,
+                                        data: data
+                                }]
+                        });
+                },error:function(){
+                        alert("失败");
+                }
+        })
+    })
+
+    /*]]>*/
+</script>
+</html>

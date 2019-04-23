@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Controller
@@ -122,6 +123,16 @@ public class MerchantServiceImpl implements MerchantService {
     @ResponseBody
     public void addgold() {
         merchantMapper.addgold();
+    }
+
+    @Override
+    public List<Map<String, Object>> findshopline() {
+        return merchantMapper.findshopline();
+    }
+
+    @Override
+    public List<Map<String, Object>> findsystem() {
+        return merchantMapper.findsystem();
     }
 
 

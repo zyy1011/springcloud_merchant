@@ -103,4 +103,14 @@ public class PageController {
         return "gold";
     }
 
+    @RequestMapping("toshopline")
+    public String toshopline() {
+        return "shopline";
+    }
+
+    @RequestMapping("toMerchantTwo")
+    public String toMerchantTwo() {
+        return "MerchantTwo";
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface MerchantService {
 
@@ -41,4 +42,12 @@ public interface MerchantService {
     @GetMapping("addgold")
     @ResponseBody
     void addgold();
+
+    @GetMapping("findshopline")
+    @ResponseBody
+    List<Map<String, Object>> findshopline();
+
+    @GetMapping("findsystem")
+    @ResponseBody
+    List<Map<String, Object>> findsystem();
 }

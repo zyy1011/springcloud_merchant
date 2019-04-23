@@ -5,6 +5,7 @@ import com.jk.model.NavBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MerchantMapper {
 
@@ -29,4 +30,10 @@ public interface MerchantMapper {
 
     //增加金币
     void addgold();
+
+    //折线图
+    List<Map<String, Object>> findshopline();
+
+    //柱状图
+    List<Map<String, Object>> findsystem();
 }

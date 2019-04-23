@@ -41,4 +41,17 @@
     insert into t_gold (gold,userid) values(#{goid},#{userid})
     </insert>
 
+    <!-- 折线图  -->
+    <select id="findshopline" resultType="java.util.LinkedHashMap">
+	  select  count(*) 总个数,m.type 类型 from yy_merchants m
+	  group by m.type
+	</select>
+
+    <!--柱状图-->
+    <select id="findsystem" resultType="java.util.LinkedHashMap">
+		select count(*) 总个数,u.createtime 日期  from yz_shang u
+
+		group by u.createtime
+	</select>
+
 </mapper>
