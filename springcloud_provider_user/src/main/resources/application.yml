@@ -18,7 +18,7 @@ mybatis:
   mapper-locations: classpath:mybatis/*.xml
 
 redis:
-  hostName: 192.168.0.175
+  hostName: 127.0.0.1
   pool:
     maxActive: 8
     maxIdle: 8
