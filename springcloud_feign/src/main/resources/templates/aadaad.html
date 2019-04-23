@@ -4,12 +4,130 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
     <style type="text/css">
-        .myrow{
-            margin-bottom:10px
+        .myrow {
+            margin-bottom: 5px
         }
     </style>
 </head>
 <body>
+<div class="modal-body">
+    <!-- 新选项卡 -->
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                人员基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#linkman" data-toggle="tab">
+                店铺基本信息
+            </a>
+        </li>
+        <li>
+            <a href="#bank" data-toggle="tab">
+                执照证明
+            </a>
+        </li>
+    </ul>
+
+    <!-- 选项卡下内容 -->
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>用户名字</td>
+                    <td><input type="text" id="name" name="name" style="border:0px;" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>负责人姓名</td>
+                    <td>
+                        <input type="text" class="form-control" id="principal" name="principal" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>店铺人数</td>
+                    <td>
+                        <input type="number" class="form-control" id="number" name="number" style="border:0px;" min="0"
+                               onblur="dianpurrnshu()">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- 选项卡下内容 -->
+        <div class="tab-pane fade" id="linkman">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>类型</td>
+                    <td>
+                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商户规模</td>
+                    <td>
+                        <input type="text" class="form-control" id="sex" name="standard" style="border:0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>商户描述</td>
+                    <td>
+                       <!-- <textarea id="hideDetail" rows="" cols="" name="detail" style="display:none;"></textarea>
+                        <textarea id="content" rows="" cols=""></textarea>-->
+
+                        <input type="text" class="form-control" id="info" name="info" style="border:0px;width: 300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td>
+                        <input type="text" class="form-control" id="area" name="area" style="border:0px;width: 300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>开店时间</td>
+                    <td><input type="text" class="form-control date" id="createtime" name="createtime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否立即开店</td>
+                    <td><input type="text" class="form-control " id="status" name="status">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade" id="bank">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>店面照片</td>
+                    <td><input type="file" id="butOne">
+                        <input type="hidden" id="imagea" name="image">
+                        <div id="showImgDiv"
+                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
+                        </div>
+                        <div id="showBars"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>营业执照</td>
+                    <td><input type="file" id="butTwo">
+                        <input type="hidden" id="certification" name="certification">
+                        <div id="showImgDiv2"
+                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                            <img src="" id="testimg2" style="width: 150px;height: 150px;"/>
+                        </div>
+                        <div id="showBars2"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!--
 <div class="row myrow">
     <div class="col-md-2">
         <label for="name">用户名字</label>
@@ -110,10 +228,46 @@
         <input type="text" class="form-control " id="status" name="status">
     </div>
 </div>
+-->
+
+
 </body>
 <script type="text/javascript">
 
-    $(function(){
+
+/*
+    var editor = null;
+    KindEditor.ready(function(K) {//将编辑器添加到文档中
+        editor = K.create('#content', {
+            cssPath : '<%=request.getContextPath()%>/js/kindeditor/plugins/code/prettify.css',//指定编辑器iframe document的CSS文件，用于设置可视化区域的样式。
+            uploadJson : '<%=request.getContextPath()%>/js/kindeditor/jsp/upload_json.jsp', //指定上传文件的服务器端程序。
+            fileManagerJson : '<%=request.getContextPath()%>/js/kindeditor/jsp/file_manager_json.jsp',//指定浏览远程图片的服务器端程序。
+            allowFileManager : true,  //true时显示浏览远程服务器按钮 ;默认值: false
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+*/
+
+//店铺人数
+        function dianpurrnshu() {
+            var number = $("#number").val();
+        if(number<0){
+            $("#number").val("0");
+        }
+    }
+
+    $(function () {
         $('.date').datetimepicker({
             language: 'zh-CN',//显示中文
             //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
@@ -128,31 +282,31 @@
     //文件域的id
     $("#butOne").uploadify({
         //前台请求后台的url 不可忽略的参数
-        'uploader' :"../upload/upImg",
+        'uploader': "../upload/upImg",
         //插件自带 不可忽略的参数
-        'swf' : "../uploadify/uploadify.swf",
+        'swf': "../uploadify/uploadify.swf",
         //撤销按钮的图片路径
-        'cancelImg' : "../uploadify/uploadify-cancel.png",
+        'cancelImg': "../uploadify/uploadify-cancel.png",
         //如果为true 为自动上传 在文件后 为false 那么它就要我们自己手动点上传按钮
-        'auto' : true,
+        'auto': true,
         //可以同时选择多个文件 默认为true 不可忽略
-        'multi' : false,
+        'multi': false,
         //给上传按钮设置文字
-        'buttonText' : "上传头像",
+        'buttonText': "上传头像",
         //上传后队列是否消失
-        'removeCompleted' : true,
-        'removeTimeout' : 1,
+        'removeCompleted': true,
+        'removeTimeout': 1,
         //上传文件的个数
-        'uploadLimit' : 2,
-        'fileTypeExts' : "*.jpg;*.jpge;*.gif;*.png",
-        'fileSizeLimit' : "2MB",
+        'uploadLimit': 2,
+        'fileTypeExts': "*.jpg;*.jpge;*.gif;*.png",
+        'fileSizeLimit': "2MB",
         //给div的进度条加背景 不可忽略
-        'queueID' : "showBars",
+        'queueID': "showBars",
         // controller层方法中接收文件的参数名--------artImg
-        'fileObjName' : "artImg",
+        'fileObjName': "artImg",
         //上传成功后的回调函数
-        'onUploadSuccess' : function(file, data, response) {
-            $("#testimg").prop("src",data);
+        'onUploadSuccess': function (file, data, response) {
+            $("#testimg").prop("src", data);
             $("#imagea").val(data);
         }
     })
@@ -160,31 +314,31 @@
     //文件域的id
     $("#butTwo").uploadify({
         //前台请求后台的url 不可忽略的参数
-        'uploader' :"../upload/upImg",
+        'uploader': "../upload/upImg",
         //插件自带 不可忽略的参数
-        'swf' : '../uploadify/uploadify.swf',
+        'swf': '../uploadify/uploadify.swf',
         //撤销按钮的图片路径
-        'cancelImg' : '../uploadify/uploadify-cancel.png',
+        'cancelImg': '../uploadify/uploadify-cancel.png',
         //如果为true 为自动上传 在文件后 为false 那么它就要我们自己手动点上传按钮
-        'auto' : true,
+        'auto': true,
         //可以同时选择多个文件 默认为true 不可忽略
-        'multi' : false,
+        'multi': false,
         //给上传按钮设置文字
-        'buttonText' : '上传头像',
+        'buttonText': '上传头像',
         //上传后队列是否消失
-        'removeCompleted' : true,
-        'removeTimeout' : 1,
+        'removeCompleted': true,
+        'removeTimeout': 1,
         //上传文件的个数
-        'uploadLimit' : 2,
-        'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
-        'fileSizeLimit' : '2MB',
+        'uploadLimit': 2,
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png',
+        'fileSizeLimit': '2MB',
         //给div的进度条加背景 不可忽略
-        'queueID' : 'showBars2',
+        'queueID': 'showBars2',
         // controller层方法中接收文件的参数名--------artImg
-        'fileObjName' : 'artImg',
+        'fileObjName': 'artImg',
         //上传成功后的回调函数
-        'onUploadSuccess' : function(file, data, response) {
-            $("#testimg2").prop("src",data);
+        'onUploadSuccess': function (file, data, response) {
+            $("#testimg2").prop("src", data);
             $("#certification").val(data);
         }
     })

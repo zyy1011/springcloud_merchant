@@ -36,4 +36,6 @@ public interface MerchantMapper {
 
     //柱状图
     List<Map<String, Object>> findsystem();
+
+    void deleteTemplate(@Param("ids")Integer[] ids);
 }

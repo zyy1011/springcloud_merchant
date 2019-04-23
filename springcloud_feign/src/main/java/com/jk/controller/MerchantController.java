@@ -103,6 +103,16 @@ public class MerchantController {
     }
 
 
+
+    //批量删除
+    @DeleteMapping("deleteBrand/{ids}")
+    @ResponseBody
+    public void deleteBrand(@PathVariable Integer[] ids){
+        deleteRedis();
+        merchantService.deleteBrand(ids);
+    }
+
+
     @GetMapping("addgold")
     @ResponseBody
     public void addgold(){

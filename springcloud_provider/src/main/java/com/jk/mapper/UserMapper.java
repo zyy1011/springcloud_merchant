@@ -3,6 +3,7 @@ package com.jk.mapper;
 import com.jk.model.Role;
 import com.jk.model.Shang;
 import com.jk.model.UserBean;
+import com.jk.model.caipinBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -35,5 +36,20 @@ public interface UserMapper {
 
     //删除模板
     void deleteTemplate(@Param("ids") Integer[] ids);
-    
+
+    int queryCaipinCount();
+
+    List<caipinBean> queryCaipin(@Param("start")int start, @Param("rows") Integer rows);
+
+    void saveCaiPin(@RequestBody caipinBean caipin);
+
+    void deletecaipin(Integer id);
+
+    void deleteCaiPin(@Param("ids") Integer[] ids);
+
+
+    void updateCaiPin(caipinBean caipin);
+
+    caipinBean findCaPinById(Integer id);
+
 }

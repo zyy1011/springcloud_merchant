@@ -3,6 +3,7 @@ package com.jk.service;
 import com.jk.model.Role;
 import com.jk.model.Shang;
 import com.jk.model.UserBean;
+import com.jk.model.caipinBean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,5 +49,32 @@ public interface UserService {
     @ResponseBody
     void deleteBrand(@RequestParam("ids") Integer[] ids);
 
+    @GetMapping("sendMsg")
+    @ResponseBody
+    String sendMsg(String message);
 
+    @GetMapping("queryCaipin")
+    @ResponseBody
+    HashMap<String, Object> queryCaipin(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows);
+
+    @PostMapping("saveCaiPin")
+    @ResponseBody
+    void saveCaiPin(@RequestBody caipinBean caipin);
+
+    @DeleteMapping("deletecaipin/{id}")
+    @ResponseBody
+    void deletecaipin(@PathVariable("id")Integer id);
+
+
+    @DeleteMapping("deleteCaiPin")
+    @ResponseBody
+    void deleteCaiPin(@RequestParam("ids") Integer[] ids);
+
+    @GetMapping("findCaPinById/{id}")
+    @ResponseBody
+    caipinBean findCaPinById(@PathVariable("id")Integer id);
+
+    @PutMapping("updateCaiPin")
+    @ResponseBody
+    void updateCaiPin(@RequestBody caipinBean caipin);
 }

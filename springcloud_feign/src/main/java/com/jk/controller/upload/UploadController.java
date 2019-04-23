@@ -72,7 +72,7 @@ public class UploadController {
 
         //得到真正的路径
         File file2 = new File(file+"\\"+onlyFileName);
-
+System.out.println(file2+"--------------");
         //初始化OSSClient
         OSSClient ossClient= AliyunOSSClientUtil.getOSSClient();
         AliyunOSSClientUtil.uploadObject2OSS(ossClient, file2, OSSClientConstants.BACKET_NAME, OSSClientConstants.FOLDER);

@@ -50,4 +50,10 @@ public interface MerchantService {
     @GetMapping("findsystem")
     @ResponseBody
     List<Map<String, Object>> findsystem();
+
+     //删除 模板
+    @DeleteMapping("deleteTemplate")
+    @ResponseBody
+    void deleteBrand(@RequestParam("ids") Integer[] ids);
+
 }

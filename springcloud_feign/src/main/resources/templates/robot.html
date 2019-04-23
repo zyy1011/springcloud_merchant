@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/easyui1.5/jquery.min.js"></script>
+    <link rel="stylesheet" href="../js/easyui1.5/themes/icon.css">
+    <link rel="stylesheet" href="../js/easyui1.5/themes/default/easyui.css">
+    <script src="../js/easyui1.5/jquery.easyui.min.js"></script>
+    <script src="../js/util-js.js"></script>
+    <script src="../js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+<style type="text/css">
+    .sendConent{
+        text-align:right
+    }
+    .sendSpan{
+        background-color: green;
+        color: white;
+        font-size: 24px;
+        padding: 2px 8px;
+        border-radius: 8px;
+    }
+    .sendIcon{
+        color: green;
+        margin-left: -3px;
+    }
+    .receiveSpan{
+        background-color: blue;
+        color: white;
+        font-size: 24px;
+        padding: 2px 8px;
+        border-radius: 8px;
+    }
+    .receiveIcon{
+        color: blue;
+        margin-right: -3px;
+    }
+</style>
+</head>
+<body>  <div class="easyui-layout" data-options="fit:true" >
+    <center>
+        <div data-options="region:'north'"   style="height:80%" id="content"  >
+            <div id="p" class="easyui-panel" title="聊天窗口"
+                 style="width:550px;height:500px;padding:10px;"
+                 data-options="iconCls:'icon-save',closable:true,
+	                collapsible:true,minimizable:true,maximizable:true">
+                <div style="width:500px;height:400px;">
+                    <table id="aa" width="450"></table>
+                </div>
+                <div data-options="region:'center'" style="height: 10%">
+                    <form id="strForm">
+                        <center><input class="easyui-textbox" style="width:300px;height:30px" name="str">&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                style="background: rgb(0, 142, 173);cursor:pointer; padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
+                                id="loginBtn0"><font size="4px">发送</font></span></center>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </center>
+</div>
+
+<!--<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" style="height:80%" id="content">
+    </div>
+    <div data-options="region:'center'" style="text-align:center">
+        <input class="easyui-textbox" id="message">
+        <a class="easyui-linkbutton" href="javascript:send()" data-options="iconCls:'icon-ok'">发送</a>
+    </div>
+</div>-->
+</body>
+<script type="text/javascript">
+    /*function send(){
+        var message = $("#message").textbox("getValue");
+        var sendMsg = '<p class="sendConent">'+
+            '<span class="sendSpan">'+message+'</span>'+
+            '<span class="sendIcon">▶</span>'+
+            '</p>';
+        //拼接发送的内容
+        $("#content").append(sendMsg);
+        //清空发送框的内容
+        $("#message").textbox("setValue","");
+        //设置滚动条自动滚动
+        $("#content").scrollTop($("#content")[0].scrollHeight);
+        //获取回复的内容
+        $.ajax({
+            url:"../user/sendMsg",
+            data:JSON.stringify({message:message}),
+
+                /!*{},*!/
+            type:"get",
+            success:function(data){
+                //拼接回复的内容
+                var revMsg = '<p class="receiveConent">'+
+                    '<span class="receiveIcon">◀</span>'+
+                    '<span class="receiveSpan">'+data+'</span>'+
+                    '</p>';
+                $("#content").append(revMsg);
+                //设置滚动条自动滚动
+                $("#content").scrollTop($("#content")[0].scrollHeight);
+            }
+        })
+    }*/
+
+    $("body").keydown(function(){
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            rob();
+        }
+    });
+
+    function rob(){
+        var str=$("[name='str']").val();
+        $("#aa").append('<div id="aa" class="comment" style="float:right"><b>我:</b>'+str+'</div><br>');
+        //清空发送框的内容
+        $("#message").textbox("setValue","");
+        //设置滚动条自动滚动
+        $("#content").scrollTop($("#content")[0].scrollHeight);
+        $.ajax({
+            url:"../user/chatRobot",
+            type:"post",
+            data:{str:$("[name='str']").val()},
+            async:false,
+            dataType:"json",
+            success:function (data){
+                $('#strForm').form('reset');
+                $("#aa").append('<div id="aa" class="comment2" style="float:left"><b>客服:</b>'+data+'</div><br>');
+                //设置滚动条自动滚动
+                $("#content").scrollTop($("#content")[0].scrollHeight);
+            },
+            error:function (){
+
+            }
+
+        })
+    }
+
+    $("#loginBtn0").click(function (){
+        rob();
+    })
+</script>
+</html>
+
+
