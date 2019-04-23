@@ -344,12 +344,10 @@
 
     //下线
     function updateStatus(id) {
-        alert(id);
         $.ajax({
             url: '../merchant/updateStatus/' + id,
             type: 'get',
-            dataType: 'json',
-            success: function (data) {
+            success: function () {
                 $('#merchantsTable').bootstrapTable('refresh');
             }
         })
