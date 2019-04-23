@@ -207,11 +207,8 @@
                     $.ajax({
                         url:'../merchant/delOne/'+id,
                         type:'delete',
-                        dataType:'json',
-                        success:function(data){
-                            if (data==true) {
+                        success:function(){
                                 $('#merchantsTable').bootstrapTable('refresh');
-                            }
                         }
                     })
                 }
@@ -360,7 +357,7 @@
                                 'invoiceprice':invoiceprice
                             }),
                             success:function(){
-                                $('#movieTable').bootstrapTable('refresh');
+                                $('#merchantsTable').bootstrapTable('refresh');
                             }
                         });
                     }

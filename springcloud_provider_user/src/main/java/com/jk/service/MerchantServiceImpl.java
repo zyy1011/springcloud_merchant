@@ -8,6 +8,7 @@ import com.jk.model.NavBean;
 import com.jk.utils.HttpClientUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,8 @@ public class MerchantServiceImpl implements MerchantService {
     @Autowired
     private MerchantMapper merchantMapper;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     //左侧导航树
 
@@ -57,14 +60,28 @@ public class MerchantServiceImpl implements MerchantService {
     @ResponseBody
     public HashMap<String, Object> findMerchantPage(@RequestParam("page")Integer page, @RequestParam("rows") Integer rows) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        //查询总条数
-        int total = merchantMapper.findMerchantCount();
-        //分页查询
-        int start = (page-1)*rows;
-        List<MerchantBean> list = merchantMapper.findMerchantPage(start,rows);
-        hashMap.put("total", total);
-        hashMap.put("rows", list);
-        return hashMap;
+
+        List range = redisTemplate.opsForList().range("merList", (page - 1) * rows, page * rows - 1);
+
+        if (range.isEmpty()) {
+            System.out.println("走数据库");
+            //查询总条数
+            int total = merchantMapper.findMerchantCount();
+            //分页查询
+            int start = (page - 1) * rows;
+            List<MerchantBean> list = merchantMapper.findMerchantPage(start, rows);
+            List<MerchantBean> listAll = merchantMapper.findMerchantPageAll();
+            redisTemplate.opsForList().rightPushAll("merList",listAll);
+            hashMap.put("total", total);
+            hashMap.put("rows", list);
+            return hashMap;
+        }else{
+            System.out.println("走redis");
+            int size = redisTemplate.opsForList().range("merList", 0, -1).size();
+            hashMap.put("total", size);
+            hashMap.put("rows", range);
+            return hashMap;
+        }
     }
 
     @Override

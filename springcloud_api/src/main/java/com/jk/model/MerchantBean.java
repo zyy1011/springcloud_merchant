@@ -1,7 +1,10 @@
 package com.jk.model;
 
-public class MerchantBean {
+import java.io.Serializable;
 
+public class MerchantBean implements Serializable {
+
+    private static final long serialVersionUID = -7522616904751136867L;
     /** 主键id */
     private Integer id ;
     /** 商品名称 */

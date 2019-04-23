@@ -12,6 +12,10 @@
       select * from yy_merchants
       limit #{start},#{rows}
    </select>
+
+    <select id="findMerchantPageAll" resultType="com.jk.model.MerchantBean">
+      select * from yy_merchants
+   </select>
    <!--删除-->
    <delete id="delOne" parameterType="int" >
         delete  from yy_merchants where id=#{id}

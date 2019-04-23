@@ -15,6 +15,8 @@ public interface MerchantMapper {
     int findMerchantCount();
     List<MerchantBean> findMerchantPage(@Param("start") int start, @Param("rows") Integer rows);
 
+    List<MerchantBean> findMerchantPageAll();
+
     //回显
     MerchantBean findMarchantById(Integer id);
    //删除
@@ -38,4 +40,6 @@ public interface MerchantMapper {
     List<Map<String, Object>> findsystem();
 
     void deleteTemplate(@Param("ids")Integer[] ids);
+
+
 }
