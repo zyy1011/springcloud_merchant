@@ -100,21 +100,13 @@
                         }
                     }
                 },
-                {field: 'standard', title: '商品规格', align: 'center'},
                 {
                     field: 'image', title: '商品照片', align: 'center', formatter: function (value, row, index) {
                         return "<img width='50px' height='50px' src='" + value + "'>";
                     }
                 },
                 {field: 'info', title: '商品描述', align: 'center'},
-                {
-                    field: 'counts', title: '商品重量', align: 'center', formatter: function (value, row, index) {
-                        return value + "(kg)";
-                    }
-                },
-                {field: 'expirationdate', title: '商 品 保 质 期', align: 'center'},
-                {field: 'repertory', title: '商品库存', align: 'center'},
-                {field: 'goodreputation', title: '商品好评', align: 'center'},
+                {field: 'counts', title: '商品库存', align: 'center'},
                 {field: 'peoplebuy', title: '购买人数', align: 'center'},
                 {field: 'price', title: '金额', align: 'center'},
                 {
@@ -123,6 +115,7 @@
                         return updown;
                     }
                 },
+                {field: 'peisong', title: '配送费', align: 'center'},
 
                 {
                     field: 'operation',
@@ -164,17 +157,14 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         var name = $("#name").val();
-                        var type = $("#type").val();
-                        /*var standard = $("#standard").val();*/
-                        var standard = $('#standard input:radio:checked').val();
+                        var type = $("#typea").val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        // var goodreputation = $("#goodreputation").val();
                         var peoplebuy = $("#peoplebuy").val();
                         var updown = $("#updown").val();
+                        var price = $("#price").val();
+                        var peisong = $("#peisong").val();
                         $.ajax({
                             url: '../merchant/saveMerchant',
                             contentType: 'application/json',
@@ -184,14 +174,11 @@
                                 'name': name,
                                 'type': type,
                                 'image': image,
-                                'standard': standard,
                                 'info': info,
                                 'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                //'goodreputation':goodreputation,
                                 'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber
+                                'price': price,
+                                'peisong': peisong,
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -337,18 +324,14 @@
                     "callback": function () {
                         var id = $("#id").val();
                         var name = $("#name").val();
-                        var type = $("#type").val();
-                        /*var standard = $("#standard").val();*/
-                        var standard = $('#standard input:radio:checked').val();
+                        var type = $("#typea").val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        var goodreputation = $("#goodreputation").val();
                         var peoplebuy = $("#peoplebuy").val();
-                        var referencenumber = $("#referencenumber").val();
+                        var updown = $("#updown").val();
                         var price = $("#price").val();
+                        var peisong = $("#peisong").val();
                         $.ajax({
                             url: '../merchant/updateMerchant',
                             contentType: 'application/json',
@@ -359,14 +342,13 @@
                                 'name': name,
                                 'type': type,
                                 'image': image,
-                                'standard': standard,
                                 'info': info,
                                 'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                'goodreputation': goodreputation,
                                 'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber
+                                'updown':updown,
+                                'price':price,
+                                'peisong':peisong
+
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -393,22 +375,14 @@
                 $("#name").val(data.name);
                 $("#typea").find("option[value='"+data.type+"']").attr("selected",true);
 
-                $(":input[name='standard']").each(function(){
-                    var value=$(this).val();
-                    if(value==data.standard){
-                        $(this).prop("checked",true);
-                    }
-                })
                 //照片
                 $("#imagea").val(data.image);
                 $("#testimg").prop("src", data.image);
                 $("#info").val(data.info);
                 $("#counts").val(data.counts);
-                $("#expirationdate").val(data.expirationdate);
-                $("#repertory").val(data.repertory);
-                //$("#goodreputation").val(data.goodreputation);
                 $("#peoplebuy").val(data.peoplebuy);
-                $("#referencenumber").val(data.referencenumber);
+                $("#price").val(data.price);
+                $("#peisong").val(data.peisong);
             }
         })
 

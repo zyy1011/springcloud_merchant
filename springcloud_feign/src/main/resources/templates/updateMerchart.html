@@ -24,12 +24,6 @@
             </a>
         </li>
         <li>
-            <a href="#leixing" data-toggle="tab">
-                类型
-            </a>
-        </li>
-
-        <li>
             <a href="#bank" data-toggle="tab">
                 执照证明
             </a>
@@ -62,26 +56,19 @@
                             <option value="7" >果蔬生鲜</option>
                             <option value="8" >商店超市</option>
                             <option value="9" >鲜花绿植</option>
-                            <option value="10" >医疗健康</option>
-                            <option value="11" >早餐</option>
-                            <option value="12" >午餐</option>
-                            <option value="13" >下午茶</option>
+                            <option value="10">医疗健康</option>
+                            <option value="11">早餐</option>
+                            <option value="12">午餐</option>
+                            <option value="13">下午茶</option>
                             <option value="14" >晚餐</option>
                         </select>
                         <!--<input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
                     </td>
                 </tr>
                 <tr>
+                    <td>商品库存</td>
                     <td>
-                        <label for="standard">商品规格</label>
-
-                        </lable>
-                    </td>
-                    <td>
-                        <div class="col-md-4" id="standard">
-                            <input type="radio" name="standard" class="toggle" value="1">大份
-                            <input type="radio" name="standard" class="toggle" value="2">小份
-                        </div>
+                        <input type="number" class="form-control" id="counts" name="counts" style="border:0px;" onblur="counts()">
                     </td>
                 </tr>
             </table>
@@ -92,36 +79,11 @@
         <div class="tab-pane fade" id="linkman">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <td>商品重量</td>
-                    <td>
-                        <input type="number" class="form-control" id="counts" name="counts" style="border:0px;" onblur="counts()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品保质期</td>
-                    <td>
-                        <input type="text" class="form-control date" id="expirationdate" name="expirationdate"
-                               style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品库存</td>
-                    <td>
-                        <input type="number" class="form-control" id="repertory" name="repertory" style="border:0px;" onblur="repertory()">
-
-                    </td>
-                </tr>
-                <tr>
                     <td>购买人数</td>
                     <td>
                         <input type="number" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;" onblur="peoplebuy()">
                     </td>
                 </tr>
-            </table>
-        </div>
-        <!-- 选项卡下内容 -->
-        <div class="tab-pane fade" id="leixing">
-            <table class="table table-bordered table-striped">
                 <tr>
                     <td>金额</td>
                     <td>
@@ -137,8 +99,6 @@
                 </tr>
             </table>
         </div>
-
-
         <div class="tab-pane fade" id="bank">
             <table class="table table-bordered table-striped">
                 <tr>

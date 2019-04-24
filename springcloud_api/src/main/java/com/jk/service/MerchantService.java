@@ -1,8 +1,7 @@
 package com.jk.service;
 
-import com.jk.model.MerchantBean;
+import com.jk.model.t_goods_one;
 import com.jk.model.NavBean;
-import com.jk.model.TreeBean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public interface MerchantService {
 
     @GetMapping("findMarchantById/{id}")
     @ResponseBody
-    MerchantBean findMarchantById(@PathVariable("id") Integer id);
+    t_goods_one findMarchantById(@PathVariable("id") Integer id);
 
     @DeleteMapping("delOne/{id}")
     @ResponseBody
@@ -33,11 +32,11 @@ public interface MerchantService {
 
     @PostMapping("saveMerchant")
     @ResponseBody
-    void saveMerchant(@RequestBody MerchantBean merchantBean);
+    void saveMerchant(@RequestBody t_goods_one tgoodsone);
 
     @PutMapping("updateMerchant")
     @ResponseBody
-    void updateMerchant(@RequestBody MerchantBean merchantBean);
+    void updateMerchant(@RequestBody t_goods_one tgoodsone);
 
     @GetMapping("addgold")
     @ResponseBody

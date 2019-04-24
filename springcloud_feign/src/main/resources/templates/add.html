@@ -17,23 +17,17 @@
     <ul id="myTab" class="nav nav-tabs">
         <li class="active">
             <a href="#home" data-toggle="tab">
-                人员基本信息
+                菜品信息
             </a>
         </li>
         <li>
             <a href="#linkman" data-toggle="tab">
-                店铺基本信息
+                金额
             </a>
         </li>
-        <li>
-            <a href="#leixing" data-toggle="tab">
-                类型
-            </a>
-        </li>
-
         <li>
             <a href="#bank" data-toggle="tab">
-                执照证明
+                菜品样式
             </a>
         </li>
     </ul>
@@ -44,61 +38,45 @@
         <div class="tab-pane fade in active" id="home">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <td>用户名字</td>
+                    <td>菜品名称</td>
                     <td>
+                        <input type="hidden" id="id" name="id">
                         <input type="text" class="form-control" id="name" name="name" style="border:0px;">
                     </td>
                 </tr>
                 <tr>
-                    <td>商品类型</td>
+                    <td>菜品类型</td>
                     <td>
                         <select id="typea" name="type" class="form-control">
                             <option value="${type}">请选择</option>
                             <option value="1">美食</option>
-                            <option value="2" >快餐便当</option>
-                            <option value="3" >特色菜系</option>
-                            <option value="4" >异国料理</option>
-                            <option value="5" >小吃夜宵</option>
-                            <option value="6" >甜品饮品</option>
-                            <option value="7" >果蔬生鲜</option>
-                            <option value="8" >商店超市</option>
-                            <option value="9" >鲜花绿植</option>
-                            <option value="10" >医疗健康</option>
-                            <option value="11" >早餐</option>
-                            <option value="12" >午餐</option>
-                            <option value="13" >下午茶</option>
-                            <option value="14" >晚餐</option>
-                            <option value="-1" value="${type}">请选择</option>
-                            <option value="1" value="${type}">美食</option>
-                            <option value="2" value="${type}">快餐便当</option>
-                            <option value="3" value="${type}">特色菜系</option>
-                            <option value="4" value="${type}">异国料理</option>
-                            <option value="5" value="${type}">小吃夜宵</option>
-                            <option value="6" value="${type}">甜品饮品</option>
-                            <option value="7" value="${type}">果蔬生鲜</option>
-                            <option value="7" value="${type}">商店超市</option>
-                            <option value="8" value="${type}">鲜花绿植</option>
-                            <option value="9" value="${type}">医疗健康</option>
-                            <option value="10" value="${type}">早餐</option>
-                            <option value="11" value="${type}">午餐</option>
-                            <option value="12" value="${type}">下午茶</option>
-                            <option value="13" value="${type}">晚餐</option>
+                            <option value="2">快餐便当</option>
+                            <option value="3">特色菜系</option>
+                            <option value="4">异国料理</option>
+                            <option value="5">小吃夜宵</option>
+                            <option value="6">甜品饮品</option>
+                            <option value="7">果蔬生鲜</option>
+                            <option value="8">商店超市</option>
+                            <option value="9">鲜花绿植</option>
+                            <option value="10">医疗健康</option>
+                            <option value="11">早餐</option>
+                            <option value="12">午餐</option>
+                            <option value="13">下午茶</option>
+                            <option value="14">晚餐</option>
                         </select>
-                        <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
                     </td>
                 </tr>
                 <tr>
-                <tr>
+                    <td>菜品描述</td>
                     <td>
-                        <label for="standard">商品规格</label>
-
-                        </lable>
+                        <input type="text" class="form-control" id="info" name="info" style="border:0px;">
                     </td>
+                </tr>
+                <tr>
+                    <td>菜品库存</td>
                     <td>
-                        <div class="col-md-4" id="standard">
-                            <input type="radio" name="standard" class="toggle" value="1">大份
-                            <input type="radio" name="standard" class="toggle" value="2">小份
-                        </div>
+                        <input type="number" class="form-control" id="counts" name="counts" style="border:0px;"
+                               onblur="counts()">
                     </td>
                 </tr>
             </table>
@@ -108,37 +86,14 @@
         <!-- 选项卡下内容 -->
         <div class="tab-pane fade" id="linkman">
             <table class="table table-bordered table-striped">
-                <tr>
-                    <td>商品重量</td>
-                    <td>
-                        <input type="number" class="form-control" id="counts" name="counts" style="border:0px;"  onblur="counts()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品保质期</td>
-                    <td>
-                        <input type="text" class="form-control date" id="expirationdate" name="expirationdate"
-                               style="border:0px;" onblur="repertory()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品库存</td>
-                    <td>
-                        <input type="number" class="form-control" id="repertory" name="repertory" style="border:0px;">
 
-                    </td>
-                </tr>
                 <tr>
                     <td>购买人数</td>
                     <td>
-                        <input type="number" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;" onblur="peoplebuy()">
+                        <input type="number" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;"
+                               onblur="peoplebuy()">
                     </td>
                 </tr>
-            </table>
-        </div>
-        <!-- 选项卡下内容 -->
-        <div class="tab-pane fade" id="leixing">
-            <table class="table table-bordered table-striped">
                 <tr>
                     <td>金额</td>
                     <td>
@@ -147,19 +102,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>商品描述</td>
+                    <td>配送费</td>
                     <td>
-                        <input type="text" class="form-control" id="info" name="info" style="border:0px;">
+                        <input type="number" class="form-control" id="peisong" name="peisong" style="border:0px;"
+                               onblur="counts()">
                     </td>
                 </tr>
             </table>
         </div>
 
-
         <div class="tab-pane fade" id="bank">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <td>商品图片</td>
+                    <td>菜品样式</td>
                     <td>
                         <input type="file" id="butOne">
                         <input type="hidden" id="imagea" name="image">
@@ -183,47 +138,52 @@
     function counts() {
 
         var number = $("#counts").val();
-        if(number<0){
+        if (number < 0) {
             $("#counts").val("0");
         }
     }
+
     //商品重量
     function repertory() {
 
         var repertory = $("#repertory").val();
-        if(repertory<0){
+        if (repertory < 0) {
             $("#repertory").val("0");
         }
     }
+
     //购买人数
     function peoplebuy() {
 
         var peoplebuy = $("#peoplebuy").val();
-        if(peoplebuy<0){
+        if (peoplebuy < 0) {
             $("#peoplebuy").val("0");
         }
     }
+
     //推广商品价格
     function swagprice() {
 
         var swagprice = $("#swagprice").val();
-        if(swagprice<0){
+        if (swagprice < 0) {
             $("#swagprice").val("0");
         }
     }
+
     //活动商品价格
     function promotionprice() {
 
         var promotionprice = $("#promotionprice").val();
-        if(promotionprice<0){
+        if (promotionprice < 0) {
             $("#promotionprice").val("0");
         }
     }
+
     //发票金额
     function price() {
 
         var price = $("#price").val();
-        if(price<0){
+        if (price < 0) {
             $("#price").val("0");
         }
     }

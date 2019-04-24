@@ -1,10 +1,8 @@
 package com.jk.controller;
 
-import com.jk.model.MerchantBean;
+import com.jk.model.t_goods_one;
 import com.jk.model.NavBean;
-import com.jk.model.TreeBean;
 import com.jk.service.MerchantServiceFeign;
-import com.jk.service.serviceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -40,8 +38,8 @@ public class MerchantController {
    //回显
     @GetMapping("findMarchantById/{id}")
     @ResponseBody
-    public MerchantBean findMarchantById(@PathVariable("id") Integer id){
-        MerchantBean mer = merchantService.findMarchantById(id);
+    public t_goods_one findMarchantById(@PathVariable("id") Integer id){
+        t_goods_one mer = merchantService.findMarchantById(id);
         return mer;
     }
     //删除
@@ -64,19 +62,19 @@ public class MerchantController {
 
     @PostMapping("saveMerchant")
     @ResponseBody
-    public void saveMerchant(@RequestBody MerchantBean merchantBean){
+    public void saveMerchant(@RequestBody t_goods_one tgoodsone){
         deleteRedis();
-        merchantService.saveMerchant(merchantBean);
-        System.out.println(merchantBean);
+        System.out.println(tgoodsone);
+        merchantService.saveMerchant(tgoodsone);
     }
 
 
     @PutMapping("updateMerchant")
     @ResponseBody
-    public void updateMerchant(@RequestBody MerchantBean merchantBean){
+    public void updateMerchant(@RequestBody t_goods_one tgoodsone){
         deleteRedis();
-        System.out.println(merchantBean);
-        merchantService.updateMerchant(merchantBean);
+        System.out.println(tgoodsone);
+        merchantService.updateMerchant(tgoodsone);
     }
 
 
