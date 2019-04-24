@@ -102,45 +102,22 @@
                         }
                     }
                 },
-                {field: 'standard', title: '商品规格', align: 'center'},
                 {
                     field: 'image', title: '商品照片', align: 'center', formatter: function (value, row, index) {
                         return "<img width='50px' height='50px' src='" + value + "'>";
                     }
                 },
                 {field: 'info', title: '商品描述', align: 'center'},
-                {
-                    field: 'counts', title: '商品重量', align: 'center', formatter: function (value, row, index) {
-                        return value + "(kg)";
-                    }
-                },
-                {field: 'expirationdate', title: '商 品 保 质 期', align: 'center'},
-                {field: 'repertory', title: '商品库存', align: 'center'},
-                {field: 'goodreputation', title: '商品好评', align: 'center'},
+                {field: 'counts', title: '商品库存', align: 'center'},
                 {field: 'peoplebuy', title: '购买人数', align: 'center'},
-                {field: 'referencenumber', title: '批准文号', align: 'center'},
-                {field: 'swag', title: '推广商品', align: 'center'},
-                {field: 'promotionofgoods', title: '活动商品', align: 'center'},
-                {field: 'swagprice', title: '推广商品价格', align: 'center'},
-                {field: 'promotionprice', title: '活动商品价格', align: 'center'},
-                {
-                    field: 'invoicetype', title: '发票类型', align: 'center', formatter: function (value, row, index) {
-                        var invoicetype = row.invoicetype == 1 ? "电子" : '纸张';
-                        return invoicetype;
-                    }
-                },
-                {field: 'invoicecontents', title: '发票内容', align: 'center'},
-                {
-                    field: 'invoiceprice', title: '发票价格', align: 'center',formatter: function (value, row, index) {
-                        return value + "(元)";
-                    }
-                },
+                {field: 'price', title: '金额', align: 'center'},
                 {
                     field: 'updown', title: '上下架', align: 'center', formatter: function (value, row, index) {
                         var updown = row.updown == 1 ? "上架" : '下架';
                         return updown;
                     }
                 },
+                {field: 'peisong', title: '配送费', align: 'center'},
 
                 {
                     field: 'operation',
@@ -182,24 +159,14 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         var name = $("#name").val();
-                        var type = $("#type").val();
-                        var standard = $("#standard").val();
+                        var type = $("#typea").val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        // var goodreputation = $("#goodreputation").val();
                         var peoplebuy = $("#peoplebuy").val();
                         var updown = $("#updown").val();
-                        var swag = $("#swag").val();
-                        var promotionofgoods = $("#promotionofgoods").val();
-                        var swagprice = $("#swagprice").val();
-                        var promotionprice = $("#promotionprice").val();
-                        var invoicetype = $("#invoicetype").val();
-                        var invoicecontents = $("#invoicecontents").val();
-                        var invoiceprice = $("#invoiceprice").val();
-                        var referencenumber = $("#referencenumber").val();
+                        var price = $("#price").val();
+                        var peisong = $("#peisong").val();
                         $.ajax({
                             url: '../merchant/saveMerchant',
                             contentType: 'application/json',
@@ -209,21 +176,11 @@
                                 'name': name,
                                 'type': type,
                                 'image': image,
-                                'standard': standard,
                                 'info': info,
                                 'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                //'goodreputation':goodreputation,
                                 'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber,
-                                'swag': swag,
-                                'promotionofgoods': promotionofgoods,
-                                'swagprice': swagprice,
-                                'promotionprice': promotionprice,
-                                'invoicetype': invoicetype,
-                                'invoicecontents': invoicecontents,
-                                'invoiceprice': invoiceprice
+                                'price': price,
+                                'peisong': peisong,
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -484,12 +441,10 @@
 
     //下线
     function updateStatus(id) {
-        alert(id);
         $.ajax({
             url: '../merchant/updateStatus/' + id,
             type: 'get',
-            dataType: 'json',
-            success: function (data) {
+            success: function () {
                 $('#merchantsTable').bootstrapTable('refresh');
             }
         })
@@ -509,24 +464,14 @@
                     "callback": function () {
                         var id = $("#id").val();
                         var name = $("#name").val();
-                        var type = $("#type").val();
-                        var standard = $("#standard").val();
+                        var type = $("#typea").val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        var goodreputation = $("#goodreputation").val();
                         var peoplebuy = $("#peoplebuy").val();
-                        var referencenumber = $("#referencenumber").val();
-                        var swag = $("#swag").val();
-                        var promotionofgoods = $("#promotionofgoods").val();
-                        var swagprice = $("#swagprice").val();
-                        var promotionprice = $("#promotionprice").val();
-                        var invoicetype = $("#invoicetype").val();
-                        var invoicecontents = $("#invoicecontents").val();
-                        var invoiceprice = $("#invoiceprice").val();
-
+                        var updown = $("#updown").val();
+                        var price = $("#price").val();
+                        var peisong = $("#peisong").val();
                         $.ajax({
                             url: '../merchant/updateMerchant',
                             contentType: 'application/json',
@@ -537,21 +482,13 @@
                                 'name': name,
                                 'type': type,
                                 'image': image,
-                                'standard': standard,
                                 'info': info,
                                 'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                'goodreputation': goodreputation,
                                 'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber,
-                                'swag': swag,
-                                'promotionofgoods': promotionofgoods,
-                                'swagprice': swagprice,
-                                'promotionprice': promotionprice,
-                                'invoicetype': invoicetype,
-                                'invoicecontents': invoicecontents,
-                                'invoiceprice': invoiceprice
+                                'updown':updown,
+                                'price':price,
+                                'peisong':peisong
+
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -576,26 +513,16 @@
             success: function (data) {
                 $("#id").val(data.id);
                 $("#name").val(data.name);
-                $("#type").val(data.type);
-                $("#standard").val(data.standard);
+                $("#typea").find("option[value='"+data.type+"']").attr("selected",true);
+
                 //照片
                 $("#imagea").val(data.image);
                 $("#testimg").prop("src", data.image);
                 $("#info").val(data.info);
                 $("#counts").val(data.counts);
-                $("#expirationdate").val(data.expirationdate);
-                $("#repertory").val(data.repertory);
-                //$("#goodreputation").val(data.goodreputation);
                 $("#peoplebuy").val(data.peoplebuy);
-                $("#referencenumber").val(data.referencenumber);
-                $("#swag").val(data.swag);
-                $("#promotionofgoods").val(data.promotionofgoods);
-                $("#swagprice").val(data.swagprice);
-                $("#promotionprice").val(data.promotionprice);
-                $("#invoicetype").val(data.invoicetype);
-                $("#invoicecontents").val(data.invoicecontents);
-                $("#invoiceprice").val(data.invoiceprice);
-
+                $("#price").val(data.price);
+                $("#peisong").val(data.peisong);
             }
         })
 

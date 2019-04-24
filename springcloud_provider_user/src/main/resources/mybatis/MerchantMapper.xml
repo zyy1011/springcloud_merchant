@@ -5,38 +5,34 @@
    <select id="findTreeList" parameterType="int" resultType="com.jk.model.NavBean">
       select id,text,pid,href from t_nav where pid=#{pid}
    </select>
-   <select id="findMerchantCount" parameterType="com.jk.model.MerchantBean" resultType="int">
-      select count(*) from yy_merchants
+   <select id="findMerchantCount" parameterType="com.jk.model.t_goods_one" resultType="int">
+      select count(*) from t_goods_one
    </select>
-   <select id="findMerchantPage" resultType="com.jk.model.MerchantBean">
-      select * from yy_merchants
+   <select id="findMerchantPage" resultType="com.jk.model.t_goods_one">
+      select * from t_goods_one
       limit #{start},#{rows}
    </select>
 
-    <select id="findMerchantPageAll" resultType="com.jk.model.MerchantBean">
-      select * from yy_merchants
+    <select id="findMerchantPageAll" resultType="com.jk.model.t_goods_one">
+      select * from t_goods_one
    </select>
    <!--删除-->
    <delete id="delOne" parameterType="int" >
-        delete  from yy_merchants where id=#{id}
+        delete  from t_goods_one where id=#{id}
     </delete>
-   <!--上下架-->
-   <!--<update id="updateStatus" parameterType="com.jk.model.MerchantBean">
-        update yy_merchants m set m.updown=#{updown} where m.id=#{id}
-    </update>-->
     <!--新增-->
-    <insert id="saveMerchant" parameterType="com.jk.model.MerchantBean">
-        insert into yy_merchants (name,type,standard,image,info,counts,expirationdate,repertory,goodreputation,peoplebuy,referencenumber,swag,promotionofgoods,swagprice,promotionprice,invoicetype,invoicecontents,invoiceprice,updown)
-        values (#{name},#{type},#{standard},#{image},#{info},#{counts},#{expirationdate},#{repertory},#{goodreputation},#{peoplebuy},#{referencenumber},#{swag},#{promotionofgoods},#{swagprice},#{promotionprice},#{invoicetype},#{invoicecontents},#{invoiceprice},1)
+    <insert id="saveMerchant" parameterType="com.jk.model.t_goods_one">
+        insert into t_goods_one (name,type,image,info,counts,peoplebuy,updown,price,peisong)
+        values (#{name},#{type},#{image},#{info},#{counts},#{peoplebuy},1,#{price},#{peisong})
     </insert>
     <!--回显-->
-    <select id="findMarchantById" parameterType="int" resultType="com.jk.model.MerchantBean">
-        select m.* from yy_merchants m  where m.id=#{id}
+    <select id="findMarchantById" parameterType="int" resultType="com.jk.model.t_goods_one">
+        select m.* from t_goods_one m  where m.id=#{id}
     </select>
     <!--修改-->
     <update id="updateMerchant">
-        update yy_merchants m set  m.name=#{name},m.type=#{type},m.standard=#{standard},m.image=#{image},m.info=#{info},m.counts=#{counts},m.expirationdate=#{expirationdate},m.repertory=#{repertory},
-        m.goodreputation=#{goodreputation},m.peoplebuy=#{peoplebuy},m.referencenumber=#{referencenumber},m.swag=#{swag},m.promotionofgoods=#{promotionofgoods},m.swagprice=#{swagprice},m.promotionprice=#{promotionprice},m.invoicetype=#{invoicetype},m.invoicecontents=#{invoicecontents},m.invoiceprice=#{invoiceprice},m.updown=#{updown}
+        update t_goods_one m set  m.name=#{name},m.type=#{type},m.image=#{image},m.info=#{info},m.counts=#{counts},
+       m.peoplebuy=#{peoplebuy},m.updown=#{updown},m.price=#{price},m.peisong=#{peisong}
         where m.id=#{id}
     </update>
 
@@ -47,7 +43,7 @@
 
     <!-- 折线图  -->
     <select id="findshopline" resultType="java.util.LinkedHashMap">
-	  select  count(*) 总个数,m.type 类型 from yy_merchants m
+	  select  count(*) 总个数,m.type 类型 from t_goods_one m
 	  group by m.type
 	</select>
 
@@ -59,7 +55,7 @@
 	</select>
 
     <delete id="deleteTemplate" parameterType="int">
-    delete from yy_merchants where id in
+    delete from t_goods_one where id in
     <foreach collection="ids" item="item" open="(" close=")" separator=",">
         #{item}
     </foreach>

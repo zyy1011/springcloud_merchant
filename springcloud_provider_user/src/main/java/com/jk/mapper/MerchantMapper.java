@@ -1,6 +1,6 @@
 package com.jk.mapper;
 
-import com.jk.model.MerchantBean;
+import com.jk.model.t_goods_one;
 import com.jk.model.NavBean;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,12 +13,12 @@ public interface MerchantMapper {
 
 
     int findMerchantCount();
-    List<MerchantBean> findMerchantPage(@Param("start") int start, @Param("rows") Integer rows);
+    List<t_goods_one> findMerchantPage(@Param("start") int start, @Param("rows") Integer rows);
 
-    List<MerchantBean> findMerchantPageAll();
+    List<t_goods_one> findMerchantPageAll();
 
     //回显
-    MerchantBean findMarchantById(Integer id);
+    t_goods_one findMarchantById(Integer id);
    //删除
     void delOne(Integer id);
 
@@ -26,9 +26,9 @@ public interface MerchantMapper {
     void updateStatus(@Param("id") Integer id,@Param("updown") Integer updown);*/
 
    //新增
-    void saveMerchant(MerchantBean merchantBean);
+    void saveMerchant(t_goods_one tgoodsone);
     //修改
-    void updateMerchant(MerchantBean merchantBean);
+    void updateMerchant(t_goods_one tgoodsone);
 
     //增加金币
     void addgold();

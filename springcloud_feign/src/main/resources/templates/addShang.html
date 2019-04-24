@@ -365,7 +365,13 @@
                 //照片
                 $("#certification").val(data.certification);
                 $("#testimg2").prop("src",data.certification);
-                $("#status").val(data.status);
+                /*$("#status").val(data.status);*/
+                $(":input[name='status']").each(function(){
+                    var value=$(this).val();
+                    if(value==data.status){
+                        $(this).prop("checked",true);
+                    }
+                })
                 $("#createtime").val(data.createtime);
                 $("#number").val(data.number)
             }

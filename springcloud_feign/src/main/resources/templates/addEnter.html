@@ -84,7 +84,7 @@
                 </tr><tr>
                 <td>店铺人数</td>
                 <td>
-                    <input type="text" class="form-control" id="number" name="number" style="border:0px;">
+                    <input type="text" class="form-control" id="number" name="number" style="border:0px;"  onblur="number()">
 
                 </td>
             </tr>
@@ -97,13 +97,30 @@
                 <tr>
                     <td>类型</td>
                     <td>
-                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                        <select id="typea" name="type" class="form-control">
+                            <option value="${type}">请选择</option>
+                            <option value="1">美食</option>
+                            <option value="2" >快餐便当</option>
+                            <option value="3" >特色菜系</option>
+                            <option value="4" >异国料理</option>
+                            <option value="5" >小吃夜宵</option>
+                            <option value="6" >甜品饮品</option>
+                            <option value="7" >果蔬生鲜</option>
+                            <option value="8" >商店超市</option>
+                            <option value="9" >鲜花绿植</option>
+                            <option value="10" >医疗健康</option>
+                            <option value="11" >早餐</option>
+                            <option value="12" >午餐</option>
+                            <option value="13" >下午茶</option>
+                            <option value="14" >晚餐</option>
+                        </select>
+                       <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
                     </td>
                 </tr>
                 <tr>
                     <td>商户规模</td>
                     <td>
-                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;">
+                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;"  onblur="standard()">平方
                     </td>
                 </tr>
                 <tr>
@@ -124,10 +141,23 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <label for="status">是否立即开店</label>
+
+                    </lable>
+                    </td>
+                    <td>
+                        <div class="col-md-4" id="status">
+                        <input type="radio" name="status" class="toggle" value="1">是
+                        <input type="radio" name="status" class="toggle" value="2">否
+                        </div>
+                    </td>
+                </tr>
+                <!--<tr>
                     <td>是否立即开店</td>
                     <td> <input type="text" class="form-control " id="status" name="status">
                     </td>
-                </tr>
+                </tr>-->
             </table>
         </div>
         <div class="tab-pane fade" id="bank">
@@ -238,6 +268,24 @@
         }
     })
 
+    //不可输入负数
+    function number() {
+
+        var number = $("#number").val();
+        if(number<0){
+            $("#number").val("0");
+        }
+    }standard
+
+    //不可输入负数
+    function standard() {
+
+        var number = $("#standard").val();
+        if(number<0){
+            $("#standard").val("0");
+        }
+    }
+
     function addShop(){
         var name = $("#name").val();
         var standard = $("#standard").val();
@@ -246,7 +294,8 @@
         var expirationdate = $("#expirationdate").val();
         var principal = $("#principal").val();
         var area = $("#area").val();
-        var status = $("#status").val();
+        /*var status = $("#status").val();*/
+        var status = $('#status input:radio:checked').val();
         var createtime = $("#createtime").val();
         //照片
         var certification = $("#certification").val();
