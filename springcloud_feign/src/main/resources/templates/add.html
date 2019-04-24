@@ -53,13 +53,27 @@
                 <tr>
                     <td>商品类型</td>
                     <td>
-                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                        <select id="typea" name="type" class="form-control">
+                            <option value="-1">请选择</option>
+                            <option value="1">大商</option>
+                            <option value="2">小商</option>
+                            <option value="3">其他</option>
+                        </select>
+                        <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
                     </td>
                 </tr>
                 <tr>
-                    <td>商品规格</td>
+                <tr>
                     <td>
-                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;">
+                        <label for="standard">商品规格</label>
+
+                        </lable>
+                    </td>
+                    <td>
+                        <div class="col-md-4" id="standard">
+                            <input type="radio" name="standard" class="toggle" value="1">大份
+                            <input type="radio" name="standard" class="toggle" value="2">小份
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -114,11 +128,24 @@
         <div class="tab-pane fade" id="leixing">
             <table class="table table-bordered table-striped">
                 <tr>
+                    <td>
+                        <label for="invoicetype">发票类型</label>
+
+                        </lable>
+                    </td>
+                    <td>
+                        <div class="col-md-4" id="invoicetype">
+                            <input type="radio" name="invoicetype" class="toggle" value="1">电子
+                            <input type="radio" name="invoicetype" class="toggle" value="2">纸张
+                        </div>
+                    </td>
+                </tr>
+                <!--<tr>
                     <td>发票类型</td>
                     <td>
                         <input type="text" class="form-control" id="invoicetype" name="invoicetype" style="border:0px;">
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>发票内容</td>
                     <td>
@@ -177,128 +204,6 @@
 
 
 </div>
-<!--
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="name">商品名称</label>
-    </div>
-    <div class="col-md-4">
-        <input type="hidden" id="id" name="id">
-        <input type="text" class="form-control" id="name" name="name">
-    </div>
-    <div class="col-md-2">
-        <label for="type">商品类型</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="type" name="type">
-    </div>
-</div>
-
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="standard">商品规格</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="standard" name="standard">
-    </div>
-    <div class="col-md-2">
-        <label for="name">商品图片</label>
-    </div>
-    <div class="col-md-4">
-        <input type="file" id="butOne">
-        <input type="hidden" id="imagea" name="image">
-        <div id="showImgDiv" style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
-            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
-        </div>
-        <div id="showBars"></div>
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="counts">商品重量</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="counts" name="counts">
-    </div>
-    <div class="col-md-2">
-        <label for="expirationdate">商品保质期</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control date" id="expirationdate" name="expirationdate">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="repertory">商品库存</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="repertory" name="repertory">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="peoplebuy">购买人数</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="peoplebuy" name="peoplebuy">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="swag">推广商品</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control " id="swag" name="swag">
-    </div>
-    <div class="col-md-2">
-        <label for="promotionofgoods">活动商品</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="swagprice">推广商品价格</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control " id="swagprice" name="swagprice">
-    </div>
-    <div class="col-md-2">
-        <label for="promotionprice">活动商品价格</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="promotionprice" name="promotionprice">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="invoicetype">发票类型</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="invoicetype" name="invoicetype">
-    </div>
-    <div class="col-md-2">
-        <label for="invoicecontents">发票内容</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents">
-    </div>
-</div>
-<div class="row myrow">
-    <div class="col-md-2">
-        <label for="invoiceprice">发票金额</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="invoiceprice" name="invoiceprice">
-    </div>
-    <div class="col-md-2">
-        <label for="info">商品描述</label>
-    </div>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="info" name="info">
-    </div>
-</div>-->
 </body>
 <script type="text/javascript">
 

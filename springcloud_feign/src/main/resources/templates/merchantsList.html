@@ -181,7 +181,8 @@
                     "callback": function () {
                         var name = $("#name").val();
                         var type = $("#type").val();
-                        var standard = $("#standard").val();
+                        /*var standard = $("#standard").val();*/
+                        var standard = $('#standard input:radio:checked').val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
@@ -194,7 +195,8 @@
                         var promotionofgoods = $("#promotionofgoods").val();
                         var swagprice = $("#swagprice").val();
                         var promotionprice = $("#promotionprice").val();
-                        var invoicetype = $("#invoicetype").val();
+                        /*var invoicetype = $("#invoicetype").val();*/
+                        var invoicetype = $('#invoicetype input:radio:checked').val();
                         var invoicecontents = $("#invoicecontents").val();
                         var invoiceprice = $("#invoiceprice").val();
                         var referencenumber = $("#referencenumber").val();
@@ -368,7 +370,8 @@
                         var id = $("#id").val();
                         var name = $("#name").val();
                         var type = $("#type").val();
-                        var standard = $("#standard").val();
+                        /*var standard = $("#standard").val();*/
+                        var standard = $('#standard input:radio:checked').val();
                         var image = $("#imagea").val();
                         var info = $("#info").val();
                         var counts = $("#counts").val();
@@ -381,7 +384,8 @@
                         var promotionofgoods = $("#promotionofgoods").val();
                         var swagprice = $("#swagprice").val();
                         var promotionprice = $("#promotionprice").val();
-                        var invoicetype = $("#invoicetype").val();
+                        /*var invoicetype = $("#invoicetype").val();*/
+                        var invoicetype = $('#invoicetype input:radio:checked').val();
                         var invoicecontents = $("#invoicecontents").val();
                         var invoiceprice = $("#invoiceprice").val();
 
@@ -434,8 +438,20 @@
             success: function (data) {
                 $("#id").val(data.id);
                 $("#name").val(data.name);
-                $("#type").val(data.type);
-                $("#standard").val(data.standard);
+                /*$("#type").val(data.type);*/
+                $(":selected[name='type']").each(function(){
+                    var value=$(this).val();
+                    if(value==data.type){
+                        $(this).prop("checked",true);
+                    }
+                })
+                /*$("#standard").val(data.standard);*/
+                $(":input[name='standard']").each(function(){
+                    var value=$(this).val();
+                    if(value==data.standard){
+                        $(this).prop("checked",true);
+                    }
+                })
                 //照片
                 $("#imagea").val(data.image);
                 $("#testimg").prop("src", data.image);
@@ -450,7 +466,13 @@
                 $("#promotionofgoods").val(data.promotionofgoods);
                 $("#swagprice").val(data.swagprice);
                 $("#promotionprice").val(data.promotionprice);
-                $("#invoicetype").val(data.invoicetype);
+                /*$("#invoicetype").val(data.invoicetype);*/
+                $(":input[name='invoicetype']").each(function(){
+                    var value=$(this).val();
+                    if(value==data.invoicetype){
+                        $(this).prop("checked",true);
+                    }
+                })
                 $("#invoicecontents").val(data.invoicecontents);
                 $("#invoiceprice").val(data.invoiceprice);
 
