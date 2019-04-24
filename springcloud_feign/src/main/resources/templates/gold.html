@@ -28,7 +28,7 @@
                 <font color="#32cd32" size="4px"><b>支付成功</b></font>
             <br/><br/><br/>
         <div>
-            <button type="button" class="btn btn-primary" style="color: #32cd32">　　　完　　成　　　</button>
+            <button type="button"  class="btn btn-primary" style="color: #32cd32" onclick="tomain()">　　　完　　成　　　</button>
         </div>
         </div>
 
@@ -47,6 +47,10 @@
 
         }
     })
+
+    function tomain(){
+        xindow.location.href = "http://192.168.0.135:8082/page/toMyIndex";
+    }
 
 </script>
 </html>
