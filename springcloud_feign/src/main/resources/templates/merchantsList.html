@@ -391,14 +391,8 @@
             success: function (data) {
                 $("#id").val(data.id);
                 $("#name").val(data.name);
-                /*$("#type").val(data.type);*/
-                $(":input[name='type']").each(function(){
-                    var value=$(this).val();
-                    if(value==data.type){
-                        $(this).prop("checked",true);
-                    }
-                })
-                /*$("#standard").val(data.standard);*/
+                $("#typea").find("option[value='"+data.type+"']").attr("selected",true);
+
                 $(":input[name='standard']").each(function(){
                     var value=$(this).val();
                     if(value==data.standard){
