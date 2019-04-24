@@ -65,5 +65,20 @@
     </foreach>
     </delete>
 
+    <!--批量上架-->
+    <update id="updateShang">
+        update yy_merchants m set m.updown = 1  where id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+    <!--批量下架-->
+    <update id="updateXai">
+        update yy_merchants m set m.updown = 2  where id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
 
 </mapper>

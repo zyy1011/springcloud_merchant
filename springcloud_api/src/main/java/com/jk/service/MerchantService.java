@@ -39,6 +39,14 @@ public interface MerchantService {
     @ResponseBody
     void updateMerchant(@RequestBody MerchantBean merchantBean);
 
+    @PutMapping("updateShang")
+    @ResponseBody
+    void updateShang(@RequestParam("ids")  Integer[] ids);
+
+    @PutMapping("updateXai")
+    @ResponseBody
+    void updateXai(@RequestParam("ids") Integer[] ids);
+
     @GetMapping("addgold")
     @ResponseBody
     void addgold();
@@ -55,5 +63,7 @@ public interface MerchantService {
     @DeleteMapping("deleteTemplate")
     @ResponseBody
     void deleteBrand(@RequestParam("ids") Integer[] ids);
+
+
 
 }

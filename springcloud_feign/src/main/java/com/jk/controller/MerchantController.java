@@ -93,6 +93,20 @@ public class MerchantController {
         deleteRedis();
         merchantService.deleteBrand(ids);
     }
+    //批量上架
+    @PutMapping("updateShang/{ids}")
+    @ResponseBody
+    public void updateShang(@PathVariable Integer[] ids){
+        deleteRedis();
+        merchantService.updateShang(ids);
+    }
+    //批量下架
+    @PutMapping("updateXai/{ids}")
+    @ResponseBody
+    public void updateXai(@PathVariable Integer[] ids){
+        deleteRedis();
+        merchantService.updateXai(ids);
+    }
 
 
     @GetMapping("addgold")

@@ -138,6 +138,18 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     @ResponseBody
+    public void updateShang(Integer[] ids) {
+        merchantMapper.updateShang(ids);
+    }
+
+    @Override
+    @ResponseBody
+    public void updateXai(Integer[] ids) {
+        merchantMapper.updateXai(ids);
+    }
+
+    @Override
+    @ResponseBody
     public void addgold() {
         merchantMapper.addgold();
     }

@@ -36,6 +36,8 @@
             刷新
         </button>
         <button onclick="openAdd()" type="button" class="btn btn-primary glyphicon glyphicon-plus">新增</button>
+        <button onclick="updateShang()" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up">批量上架</button>
+        <button onclick="updateXai()" type="button" class="btn btn-primary glyphicon glyphicon-arrow-down">批量下架</button>
     </table>
 </div>
 </body>
@@ -322,6 +324,144 @@
                                     size: "small",
                                     title: "提示",
                                     message: "删除成功！",
+                                    callback: function () {
+                                    },
+                                    buttons: {
+                                        ok: {
+                                            label: '确定',
+                                            className: 'btn-success'
+                                        }
+                                    }
+                                })
+                                //刷新表格
+                                $("#merchantsTable").bootstrapTable('refresh');
+                            }
+                        })
+
+                    }
+                }
+            })
+        }
+    }
+    //批量上
+    function updateShang() {
+        var rows = $('#merchantsTable').bootstrapTable('getSelections'); //获取表选择的行
+        if (rows.length <= 0) {
+            // 没选择
+            bootbox.alert({
+                size: "small",
+                title: "提示",
+                message: "请选择至少一行数据",
+                callback: function () {
+                },
+                buttons: {
+                    ok: {
+                        label: '确定',
+                        className: 'btn-success'
+                    }
+                }
+            })
+        } else {
+            //提示确认是否上架
+            bootbox.confirm({
+                size: "small",
+                title: "提示",
+                message: "是否全部上架选中数据?",
+                buttons: {
+                    confirm: {
+                        label: '确定',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        var ids = "";
+                        for (var i = 0; i < rows.length; i++) {
+                            ids += ids == "" ? rows[i].id : "," + rows[i].id;
+                        }
+                        //后台ajax上架
+                        $.ajax({
+                            url: "../merchant/updateShang/" + ids,
+                            type: "put",
+                            data: {},
+                            success: function (data) {
+                                bootbox.alert({
+                                    size: "small",
+                                    title: "提示",
+                                    message: "上架成功！",
+                                    callback: function () {
+                                    },
+                                    buttons: {
+                                        ok: {
+                                            label: '确定',
+                                            className: 'btn-success'
+                                        }
+                                    }
+                                })
+                                //刷新表格
+                                $("#merchantsTable").bootstrapTable('refresh');
+                            }
+                        })
+
+                    }
+                }
+            })
+        }
+    }
+    //批量下
+    function updateXai() {
+        var rows = $('#merchantsTable').bootstrapTable('getSelections'); //获取表选择的行
+        if (rows.length <= 0) {
+            // 没选择
+            bootbox.alert({
+                size: "small",
+                title: "提示",
+                message: "请选择至少一行数据",
+                callback: function () {
+                },
+                buttons: {
+                    ok: {
+                        label: '确定',
+                        className: 'btn-success'
+                    }
+                }
+            })
+        } else {
+            //提示确认是否上架
+            bootbox.confirm({
+                size: "small",
+                title: "提示",
+                message: "是否全部下架选中数据?",
+                buttons: {
+                    confirm: {
+                        label: '确定',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        var ids = "";
+                        for (var i = 0; i < rows.length; i++) {
+                            ids += ids == "" ? rows[i].id : "," + rows[i].id;
+                        }
+                        //后台ajax上架
+                        $.ajax({
+                            url: "../merchant/updateXai/" + ids,
+                            type: "put",
+                            data: {},
+                            success: function (data) {
+                                bootbox.alert({
+                                    size: "small",
+                                    title: "提示",
+                                    message: "下架成功！",
                                     callback: function () {
                                     },
                                     buttons: {

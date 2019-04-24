@@ -42,4 +42,7 @@ public interface MerchantMapper {
     void deleteTemplate(@Param("ids")Integer[] ids);
 
 
+    void updateShang( @Param("ids")Integer[] ids);
+
+    void updateXai( @Param("ids") Integer[] ids);
 }
