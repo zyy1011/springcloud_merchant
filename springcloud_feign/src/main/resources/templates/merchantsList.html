@@ -439,12 +439,13 @@
                 $("#id").val(data.id);
                 $("#name").val(data.name);
                 /*$("#type").val(data.type);*/
-                $(":selected[name='type']").each(function(){
+                /*$(":selected[name='type']").each(function(){
                     var value=$(this).val();
                     if(value==data.type){
-                        $(this).prop("checked",true);
+                        $(this).prop("selected",true);
                     }
-                })
+                })*/
+                $("#typea").find("option[value='"+data.type+"']").attr("selected",true);
                 /*$("#standard").val(data.standard);*/
                 $(":input[name='standard']").each(function(){
                     var value=$(this).val();
