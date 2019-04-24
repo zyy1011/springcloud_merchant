@@ -13,11 +13,6 @@
 <div class="modal-body">
     <!-- 新选项卡 -->
     <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a href="#home" data-toggle="tab">
-                人员基本信息
-            </a>
-        </li>
         <li>
             <a href="#linkman" data-toggle="tab">
                 店铺基本信息
@@ -39,82 +34,22 @@
 
     <!-- 选项卡下内容 -->
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>用户名字</td>
-                    <td>
-                        <input type="hidden" id="id" name="id">
-                        <input type="text" class="form-control" id="name" name="name" style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品类型</td>
-                    <td>
-                        <select id="typea" name="type" class="form-control">
-                            <option value="-1">请选择</option>
-                            <option value="1">美食</option>
-                            <option value="2">快餐便当</option>
-                            <option value="3">特色菜系</option>
-                            <option value="4">异国料理</option>
-                            <option value="5">小吃夜宵</option>
-                            <option value="6">甜品饮品</option>
-                            <option value="7">果蔬生鲜</option>
-                            <option value="7">商店超市</option>
-                            <option value="8">鲜花绿植</option>
-                            <option value="9">医疗健康</option>
-                            <option value="10">早餐</option>
-                            <option value="11">午餐</option>
-                            <option value="12">下午茶</option>
-                            <option value="13">晚餐</option>
-                        </select>
-                        <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="standard">商品规格</label>
-
-                        </lable>
-                    </td>
-                    <td>
-                        <div class="col-md-4" id="standard">
-                            <input type="radio" name="standard" class="toggle" value="1">大份
-                            <input type="radio" name="standard" class="toggle" value="2">小份
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
 
         <!-- 选项卡下内容 -->
         <div class="tab-pane fade" id="linkman">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <td>商品重量</td>
+                    <td>推广商品</td>
                     <td>
-                        <input type="number" class="form-control" id="counts" name="counts" style="border:0px;" onblur="counts()">
+                        <input type="hidden" id="id" name="id">
+                        <input type="text" class="form-control " id="swag" name="swag" style="border:0px;">
                     </td>
                 </tr>
                 <tr>
-                    <td>商品保质期</td>
+                    <td>活动商品</td>
                     <td>
-                        <input type="text" class="form-control date" id="expirationdate" name="expirationdate"
+                        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods"
                                style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品库存</td>
-                    <td>
-                        <input type="number" class="form-control" id="repertory" name="repertory" style="border:0px;" onblur="repertory()">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>购买人数</td>
-                    <td>
-                        <input type="number" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;" onblur="peoplebuy()">
                     </td>
                 </tr>
             </table>
@@ -123,16 +58,36 @@
         <div class="tab-pane fade" id="leixing">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <td>金额</td>
                     <td>
-                        <input type="number" class="form-control" id="price" name="price"
-                               style="border:0px;" onblur="price()">
+                        <label for="invoicetype">发票类型</label>
+
+                        </lable>
+                    </td>
+                    <td>
+                        <div class="col-md-4" id="invoicetype">
+                            <input type="radio" name="invoicetype" class="toggle" value="1">电子
+                            <input type="radio" name="invoicetype" class="toggle" value="2">纸张
+                        </div>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td>发票类型</td>
+                    <td>
+                        <input type="text" class="form-control" id="invoicetype" name="invoicetype" style="border:0px;">
+                    </td>
+                </tr>-->
+                <tr>
+                    <td>发票内容</td>
+                    <td>
+                        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents"
+                               style="border:0px;">
                     </td>
                 </tr>
                 <tr>
-                    <td>商品描述</td>
+                    <td>发票金额</td>
                     <td>
-                        <input type="text" class="form-control" id="info" name="info" style="border:0px;">
+                        <input type="number" class="form-control" id="invoiceprice" name="invoiceprice"
+                               style="border:0px;" onblur="invoiceprice()">
                     </td>
                 </tr>
             </table>
@@ -153,9 +108,25 @@
                         <div id="showBars"></div>
                     </td>
                 </tr>
+                <tr>
+                    <td>推广商品价格</td>
+                    <td>
+                        <input type="number" class="form-control " id="swagprice" name="swagprice" style="border:0px;" onblur="swagprice()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>活动商品价格</td>
+                    <td>
+                        <input type="text" class="form-control" id="promotionprice" name="promotionprice"
+                               style="border:0px;" onblur="promotionprice()">
+                    </td>
+                </tr>
+
             </table>
         </div>
     </div>
+
+
 </div>
 </body>
 <script type="text/javascript">
@@ -178,11 +149,11 @@
         }
     }
     //购买人数
-    function price() {
+    function peoplebuy() {
 
-        var price = $("#price").val();
-        if(price<0){
-            $("#price").val("0");
+        var peoplebuy = $("#peoplebuy").val();
+        if(peoplebuy<0){
+            $("#peoplebuy").val("0");
         }
     }
     //推广商品价格

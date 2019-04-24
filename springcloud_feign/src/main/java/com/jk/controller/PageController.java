@@ -129,4 +129,20 @@ public class PageController {
     public String toupdateCaiPin() {
         return "updateCaiPin";
     }
+
+    @RequestMapping("toshangjia")
+    public String toshangjia() {
+        return "shangjia";
+    }
+
+    @RequestMapping("toaddshangjia")
+    public String toaddshangjia() {
+        return "addshangjia";
+    }
+
+
+    @RequestMapping("toupdateshangjia")
+    public String toupdateshangjia() {
+        return "updateshangjia";
+    }
 }

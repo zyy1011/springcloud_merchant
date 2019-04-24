@@ -26,8 +26,8 @@
     </update>-->
     <!--新增-->
     <insert id="saveMerchant" parameterType="com.jk.model.MerchantBean">
-        insert into yy_merchants (name,type,standard,image,info,counts,expirationdate,repertory,goodreputation,peoplebuy,referencenumber,swag,promotionofgoods,swagprice,promotionprice,invoicetype,invoicecontents,invoiceprice,updown)
-        values (#{name},#{type},#{standard},#{image},#{info},#{counts},#{expirationdate},#{repertory},#{goodreputation},#{peoplebuy},#{referencenumber},#{swag},#{promotionofgoods},#{swagprice},#{promotionprice},#{invoicetype},#{invoicecontents},#{invoiceprice},1)
+        insert into yy_merchants (name,type,standard,image,info,counts,expirationdate,repertory,goodreputation,peoplebuy,referencenumber,swag,promotionofgoods,swagprice,promotionprice,invoicetype,invoicecontents,invoiceprice,updown,price)
+        values (#{name},#{type},#{standard},#{image},#{info},#{counts},#{expirationdate},#{repertory},#{goodreputation},#{peoplebuy},#{referencenumber},#{swag},#{promotionofgoods},#{swagprice},#{promotionprice},#{invoicetype},#{invoicecontents},#{invoiceprice},1,#{price})
     </insert>
     <!--回显-->
     <select id="findMarchantById" parameterType="int" resultType="com.jk.model.MerchantBean">
@@ -36,7 +36,7 @@
     <!--修改-->
     <update id="updateMerchant">
         update yy_merchants m set  m.name=#{name},m.type=#{type},m.standard=#{standard},m.image=#{image},m.info=#{info},m.counts=#{counts},m.expirationdate=#{expirationdate},m.repertory=#{repertory},
-        m.goodreputation=#{goodreputation},m.peoplebuy=#{peoplebuy},m.referencenumber=#{referencenumber},m.swag=#{swag},m.promotionofgoods=#{promotionofgoods},m.swagprice=#{swagprice},m.promotionprice=#{promotionprice},m.invoicetype=#{invoicetype},m.invoicecontents=#{invoicecontents},m.invoiceprice=#{invoiceprice},m.updown=#{updown}
+        m.goodreputation=#{goodreputation},m.peoplebuy=#{peoplebuy},m.referencenumber=#{referencenumber},m.swag=#{swag},m.promotionofgoods=#{promotionofgoods},m.swagprice=#{swagprice},m.promotionprice=#{promotionprice},m.invoicetype=#{invoicetype},m.invoicecontents=#{invoicecontents},m.invoiceprice=#{invoiceprice},m.updown=#{updown},m.price=#{price}
         where m.id=#{id}
     </update>
 

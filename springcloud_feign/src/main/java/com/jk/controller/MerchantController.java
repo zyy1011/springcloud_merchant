@@ -75,6 +75,7 @@ public class MerchantController {
     @ResponseBody
     public void updateMerchant(@RequestBody MerchantBean merchantBean){
         deleteRedis();
+        System.out.println(merchantBean);
         merchantService.updateMerchant(merchantBean);
     }
 

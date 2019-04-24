@@ -125,7 +125,7 @@ public class MerchantServiceImpl implements MerchantService {
         String up =String.valueOf((char)upCase);//得到A-Z
 
         String down =String.valueOf((char)downCase);//得到a-z
-        merchantBean.setReferencenumber("国药准字"+up+upCase);
+        merchantBean.setReferencenumber("国准字"+up+upCase);
         merchantMapper.saveMerchant(merchantBean);
         System.out.println("-----------------------"+merchantBean);
     }
@@ -133,6 +133,16 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     @ResponseBody
     public void updateMerchant(MerchantBean merchantBean) {
+        Random r = new Random();
+
+        int upCase = r.nextInt(26)+65;//得到65-90的随机数
+
+        int downCase = r.nextInt(26)+97;//得到97-122的随机数
+
+        String up =String.valueOf((char)upCase);//得到A-Z
+
+        String down =String.valueOf((char)downCase);//得到a-z
+        merchantBean.setReferencenumber("国药准字"+up+upCase);
         merchantMapper.updateMerchant(merchantBean);
     }
 

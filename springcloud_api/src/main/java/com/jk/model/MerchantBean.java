@@ -67,6 +67,8 @@ public class MerchantBean implements Serializable {
     private String invoiceprice ;
     private Integer updown;
 
+    private Double price;
+
     public Integer getId() {
         return id;
     }
@@ -97,6 +99,14 @@ public class MerchantBean implements Serializable {
 
     public void setStandard(String standard) {
         this.standard = standard;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getImage() {
@@ -349,6 +359,7 @@ public class MerchantBean implements Serializable {
                 ", invoicecontents='" + invoicecontents + '\'' +
                 ", invoiceprice='" + invoiceprice + '\'' +
                 ", updown=" + updown +
+                ", price=" + price +
                 '}';
     }
 }

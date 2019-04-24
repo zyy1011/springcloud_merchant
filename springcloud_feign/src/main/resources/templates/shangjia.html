@@ -64,63 +64,21 @@
             columns: [
                 {field: '123', checkbox: true, align: 'center'},
                 {field: 'id', title: '主键id', align: 'center'},
-                {field: 'name', title: '商品名称', align: 'center'},
+                {field: 'referencenumber', title: '批准文号', align: 'center'},
+                {field: 'swag', title: '推广商品', align: 'center'},
+                {field: 'promotionofgoods', title: '活动商品', align: 'center'},
+                {field: 'swagprice', title: '推广商品价格', align: 'center'},
+                {field: 'promotionprice', title: '活动商品价格', align: 'center'},
                 {
-                    field: 'type', title: '类型', align: 'center', formatter: function (value, row, index) {
-                        if (value == 1) {
-                            return "美食";
-                        } else if (value == 2) {
-                            return "快餐便当";
-                        } else if (value == 3) {
-                            return "特色菜系";
-                        } else if (value == 4) {
-                            return "异国料理";
-                        } else if (value == 5) {
-                            return "小吃夜宵";
-                        } else if (value == 6) {
-                            return "甜品饮品";
-                        } else if (value == 7) {
-                            return "果蔬生鲜";
-                        } else if (value == 8) {
-                            return "商店超市";
-                        } else if (value == 9) {
-                            return "鲜花绿植";
-                        } else if (value == 10) {
-                            return "医疗健康";
-                        } else if (value == 11) {
-                            return "早餐";
-                        } else if (value == 12) {
-                            return "午餐";
-                        } else if (value == 13) {
-                            return "下午茶";
-                        } else if (value == 14) {
-                            return "晚餐";
-                        } else {
-                            return "其他";
-                        }
+                    field: 'invoicetype', title: '发票类型', align: 'center', formatter: function (value, row, index) {
+                        var invoicetype = row.invoicetype == 1 ? "电子" : '纸张';
+                        return invoicetype;
                     }
                 },
-                {field: 'standard', title: '商品规格', align: 'center'},
+                {field: 'invoicecontents', title: '发票内容', align: 'center'},
                 {
-                    field: 'image', title: '商品照片', align: 'center', formatter: function (value, row, index) {
-                        return "<img width='50px' height='50px' src='" + value + "'>";
-                    }
-                },
-                {field: 'info', title: '商品描述', align: 'center'},
-                {
-                    field: 'counts', title: '商品重量', align: 'center', formatter: function (value, row, index) {
-                        return value + "(kg)";
-                    }
-                },
-                {field: 'expirationdate', title: '商 品 保 质 期', align: 'center'},
-                {field: 'repertory', title: '商品库存', align: 'center'},
-                {field: 'goodreputation', title: '商品好评', align: 'center'},
-                {field: 'peoplebuy', title: '购买人数', align: 'center'},
-                {field: 'price', title: '金额', align: 'center'},
-                {
-                    field: 'updown', title: '上下架', align: 'center', formatter: function (value, row, index) {
-                        var updown = row.updown == 1 ? "上架" : '下架';
-                        return updown;
+                    field: 'invoiceprice', title: '发票价格', align: 'center',formatter: function (value, row, index) {
+                        return value + "(元)";
                     }
                 },
 
@@ -129,7 +87,7 @@
                     title: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
                     align: 'center',
                     formatter: function (value, row, index) {
-                        return operation = row.updown == 1 ? "<button type='button' class='btn btn-info' onclick='openUpdate(" + row.id + ")'>查看订单</button>" +"&nbsp;&nbsp;"+ "<button type='button' class='btn btn-info' onclick='updateStatus(" + row.id + ",2)'>下　　架</button>" +"&nbsp;&nbsp;"+ "<button type='button' class='btn btn-success' onclick='delOne(" + row.id + ")'>删除订单</button>" : "<button type='button' class='btn btn-info' onclick='openUpdate(" + row.id + ")'>查看订单</button>" +"&nbsp;&nbsp;"+ "<button type='button' class='btn btn-info' onclick='updateStatus(" + row.id + ",1)'>上　　架</button>" +"&nbsp;&nbsp;"+ "<button type='button' class='btn btn-success' onclick='delOne(" +row.id+ ")'>删除订单</button>";
+                        return operation = row.updown == 1 ? "<button type='button' class='btn btn-info' onclick='openUpdate(" + row.id + ")'>查看订单</button>" +"&nbsp;&nbsp;"+  "<button type='button' class='btn btn-success' onclick='delOne(" + row.id + ")'>删除订单</button>" : "<button type='button' class='btn btn-info' onclick='openUpdate(" + row.id + ")'>查看订单</button>" +"&nbsp;&nbsp;" +"&nbsp;&nbsp;"+ "<button type='button' class='btn btn-success' onclick='delOne(" +row.id+ ")'>删除订单</button>";
                     }
                 }
 
@@ -156,42 +114,35 @@
     function openAdd() {
         bootbox.dialog({
             title: '添加用户',
-            message: createAddContent("../page/toadd"),
+            message: createAddContent("../page/toaddshangjia"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
                     "label": "<i class='icon-ok'></i> 保存",
                     "className": "btn-sm btn-success",
                     "callback": function () {
-                        var name = $("#name").val();
-                        var type = $("#type").val();
-                        /*var standard = $("#standard").val();*/
-                        var standard = $('#standard input:radio:checked').val();
-                        var image = $("#imagea").val();
-                        var info = $("#info").val();
-                        var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        // var goodreputation = $("#goodreputation").val();
-                        var peoplebuy = $("#peoplebuy").val();
-                        var updown = $("#updown").val();
+                        var swag = $("#swag").val();
+                        var promotionofgoods = $("#promotionofgoods").val();
+                        var swagprice = $("#swagprice").val();
+                        var promotionprice = $("#promotionprice").val();
+                        /*var invoicetype = $("#invoicetype").val();*/
+                        var invoicetype = $('#invoicetype input:radio:checked').val();
+                        var invoicecontents = $("#invoicecontents").val();
+                        var invoiceprice = $("#invoiceprice").val();
+                        var referencenumber = $("#referencenumber").val();
                         $.ajax({
                             url: '../merchant/saveMerchant',
                             contentType: 'application/json',
                             type: 'post',
                             // data:$("#bookForm").serialize(),
                             data: JSON.stringify({
-                                'name': name,
-                                'type': type,
-                                'image': image,
-                                'standard': standard,
-                                'info': info,
-                                'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                //'goodreputation':goodreputation,
-                                'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber
+                                'swag': swag,
+                                'promotionofgoods': promotionofgoods,
+                                'swagprice': swagprice,
+                                'promotionprice': promotionprice,
+                                'invoicetype': invoicetype,
+                                'invoicecontents': invoicecontents,
+                                'invoiceprice': invoiceprice
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -312,23 +263,11 @@
         }
     }
 
-    //下线
-    function updateStatus(id) {
-        $.ajax({
-            url: '../merchant/updateStatus/' + id,
-            type: 'get',
-            success: function () {
-                $('#merchantsTable').bootstrapTable('refresh');
-            }
-        })
-    }
-
-
     //打开修改弹框
     function openUpdate(id) {
         bootbox.dialog({
             title: '修改用户',
-            message: createAddContent("../page/toUpdateMerchant"),
+            message: createAddContent("../page/toupdateshangjia"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -336,19 +275,15 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         var id = $("#id").val();
-                        var name = $("#name").val();
-                        var type = $("#type").val();
-                        /*var standard = $("#standard").val();*/
-                        var standard = $('#standard input:radio:checked').val();
-                        var image = $("#imagea").val();
-                        var info = $("#info").val();
-                        var counts = $("#counts").val();
-                        var expirationdate = $("#expirationdate").val();
-                        var repertory = $("#repertory").val();
-                        var goodreputation = $("#goodreputation").val();
-                        var peoplebuy = $("#peoplebuy").val();
-                        var referencenumber = $("#referencenumber").val();
-                        var price = $("#price").val();
+                        var swag = $("#swag").val();
+                        var promotionofgoods = $("#promotionofgoods").val();
+                        var swagprice = $("#swagprice").val();
+                        var promotionprice = $("#promotionprice").val();
+                        /*var invoicetype = $("#invoicetype").val();*/
+                        var invoicetype = $('#invoicetype input:radio:checked').val();
+                        var invoicecontents = $("#invoicecontents").val();
+                        var invoiceprice = $("#invoiceprice").val();
+
                         $.ajax({
                             url: '../merchant/updateMerchant',
                             contentType: 'application/json',
@@ -356,17 +291,13 @@
                             // data:$("#bookForm").serialize(),
                             data: JSON.stringify({
                                 'id': id,
-                                'name': name,
-                                'type': type,
-                                'image': image,
-                                'standard': standard,
-                                'info': info,
-                                'counts': counts,
-                                'expirationdate': expirationdate,
-                                'repertory': repertory,
-                                'goodreputation': goodreputation,
-                                'peoplebuy': peoplebuy,
-                                'referencenumber': referencenumber
+                                'swag': swag,
+                                'promotionofgoods': promotionofgoods,
+                                'swagprice': swagprice,
+                                'promotionprice': promotionprice,
+                                'invoicetype': invoicetype,
+                                'invoicecontents': invoicecontents,
+                                'invoiceprice': invoiceprice
                             }),
                             success: function () {
                                 $('#merchantsTable').bootstrapTable('refresh');
@@ -390,31 +321,20 @@
             type: 'get',
             success: function (data) {
                 $("#id").val(data.id);
-                $("#name").val(data.name);
-                /*$("#type").val(data.type);*/
-                $(":input[name='type']").each(function(){
+                $("#swag").val(data.swag);
+                $("#promotionofgoods").val(data.promotionofgoods);
+                $("#swagprice").val(data.swagprice);
+                $("#promotionprice").val(data.promotionprice);
+                /*$("#invoicetype").val(data.invoicetype);*/
+                $(":input[name='invoicetype']").each(function(){
                     var value=$(this).val();
-                    if(value==data.type){
+                    if(value==data.invoicetype){
                         $(this).prop("checked",true);
                     }
                 })
-                /*$("#standard").val(data.standard);*/
-                $(":input[name='standard']").each(function(){
-                    var value=$(this).val();
-                    if(value==data.standard){
-                        $(this).prop("checked",true);
-                    }
-                })
-                //照片
-                $("#imagea").val(data.image);
-                $("#testimg").prop("src", data.image);
-                $("#info").val(data.info);
-                $("#counts").val(data.counts);
-                $("#expirationdate").val(data.expirationdate);
-                $("#repertory").val(data.repertory);
-                //$("#goodreputation").val(data.goodreputation);
-                $("#peoplebuy").val(data.peoplebuy);
-                $("#referencenumber").val(data.referencenumber);
+                $("#invoicecontents").val(data.invoicecontents);
+                $("#invoiceprice").val(data.invoiceprice);
+
             }
         })
 
