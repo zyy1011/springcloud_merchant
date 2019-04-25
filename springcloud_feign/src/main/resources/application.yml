@@ -17,3 +17,7 @@ redis:
     minIdle: 0
   port: 6379
   timeout: 0
+
+ribbon:
+    ReadTimeout: 60000
+    ConnectTimeout: 60000

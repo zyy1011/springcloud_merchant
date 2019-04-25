@@ -67,7 +67,9 @@ public class UserController {
     @GetMapping("queryUser")
     @ResponseBody
     public HashMap<String,Object> findMoviePage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows){
-        return userService.findMoviePage(page,rows);
+        HashMap<String, Object> moviePage = userService.findMoviePage(page, rows);
+        System.out.println(moviePage.toString());
+        return moviePage;
     }
     //查询用户表
     @GetMapping("queryCaipin")
@@ -160,7 +162,6 @@ public class UserController {
     @GetMapping("findAreaId/{id}")
     @ResponseBody
     public List<AreaBean> findAreaId(@PathVariable Integer id){
-        System.out.println(AreaBean.class);
         return userService.findAreaId(id);
     }
 

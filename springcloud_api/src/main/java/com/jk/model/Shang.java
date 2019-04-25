@@ -39,8 +39,6 @@ public class Shang {
     private String expirationdate ;
     /** 店铺负责人 */
     private String principal ;
-    /** 店铺地址 */
-    private String area ;
     /** 店铺开业时间 */
     private String createtime ;
     /** 店铺状态（是否营业） */
@@ -49,6 +47,20 @@ public class Shang {
     private Integer number ;
     /** 店铺资格证 */
     private String certification ;
+    /** 店铺地址 */
+    private Integer area ;
+
+    private String areaName;
+    /**省级 */
+    private Integer city ;
+
+    private String cityName;
+    /** 县级 */
+    private Integer xian ;
+
+    private String xianName;
+    /**详细地址 */
+    private String address ;
 
     public Integer getId() {
         return id;
@@ -114,14 +126,6 @@ public class Shang {
         this.principal = principal;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public String getCreatetime() {
         return createtime;
     }
@@ -154,6 +158,61 @@ public class Shang {
         this.certification = certification;
     }
 
+    public Integer getArea() {
+        return area;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public Integer getCity() {
+        return city;
+    }
+
+    public void setCity(Integer city) {
+        this.city = city;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public Integer getXian() {
+        return xian;
+    }
+
+    public void setXian(Integer xian) {
+        this.xian = xian;
+    }
+
+    public String getXianName() {
+        return xianName;
+    }
+
+    public void setXianName(String xianName) {
+        this.xianName = xianName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {
@@ -166,11 +225,17 @@ public class Shang {
                 ", info='" + info + '\'' +
                 ", expirationdate='" + expirationdate + '\'' +
                 ", principal='" + principal + '\'' +
-                ", area='" + area + '\'' +
                 ", createtime='" + createtime + '\'' +
                 ", status=" + status +
                 ", number=" + number +
                 ", certification='" + certification + '\'' +
+                ", area=" + area +
+                ", areaName='" + areaName + '\'' +
+                ", city=" + city +
+                ", cityName='" + cityName + '\'' +
+                ", xian=" + xian +
+                ", xianName='" + xianName + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

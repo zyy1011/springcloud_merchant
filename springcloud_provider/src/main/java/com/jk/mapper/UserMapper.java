@@ -50,4 +50,6 @@ public interface UserMapper {
     caipinBean findCaPinById(Integer id);
 
     List<AreaBean> findAreaId(Integer id);
+
+//    String getAreaNameById(Integer area);
 }

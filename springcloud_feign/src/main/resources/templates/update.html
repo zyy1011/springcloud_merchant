@@ -61,7 +61,13 @@
                 <tr>
                     <td>类型</td>
                     <td>
-                        <input type="text" class="form-control" id="type" name="type" style="border:0px;">
+                        <select id="type" name="type" class="form-control">
+                            <option value="${type}">请选择</option>
+                            <option value="1">大商</option>
+                            <option value="2" >小商</option>
+                            <option value="3" >其他</option>
+                        </select>
+                        <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
                     </td>
                 </tr>
                 <tr>
@@ -88,8 +94,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>是否立即开店</td>
-                    <td> <input type="text" class="form-control " id="status" name="status">
+                    <td>
+                        <label for="status">是否立即开店</label>
+
+                        </lable>
+                    </td>
+                    <td>
+                        <div class="col-md-4" id="status">
+                            <input type="radio" name="status" class="toggle" value="1">是
+                            <input type="radio" name="status" class="toggle" value="2">否
+                        </div>
                     </td>
                 </tr>
             </table>

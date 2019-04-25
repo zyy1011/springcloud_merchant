@@ -32,9 +32,17 @@ values(#{name},#{password},#{age},#{cid})
 
 
     <select id="findUserList" resultType="com.jk.model.Shang">
-        select * from yz_Shang
+        select u.name,u.type,u.standard,u.info,u.image,u.expirationdate,u.principal,u.status,u.createtime,u.number,u.certification,t.name areaName,t2.name cityName,t3.name xianName from yz_Shang u
+        LEFT JOIN t_area t on u.areaName=t.id
+		LEFT JOIN t_area t2 on u.cityName=t2.id
+		LEFT JOIN t_area t3 on u.xianName=t3.id
         limit #{start},#{rows}
     </select>
+
+   <!-- <select id="getAreaNameById" resultType="String">
+        select name from t_area where id = #{area}
+    </select>-->
+
     <select id="queryCaipin" resultType="com.jk.model.caipinBean">
         select * from yz_table
         limit #{start},#{rows}
@@ -48,8 +56,8 @@ values(#{name},#{password},#{age},#{cid})
     </select>
 
     <insert id="saveMovie" parameterType="com.jk.model.Shang">
-        insert into yz_Shang (name,type,standard,info,image,expirationdate,area,principal,status,createtime,number,certification)
-         values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{area},#{principal},#{status},#{createtime},#{number},#{certification})
+        insert into yz_Shang (name,type,standard,info,image,expirationdate,area,principal,status,createtime,number,certification,city,xian,address)
+         values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{area},#{principal},#{status},#{createtime},#{number},#{certification},#{city},#{xian},#{address})
     </insert>
 
     <insert id="saveCaiPin" parameterType="com.jk.model.caipinBean">
@@ -65,13 +73,13 @@ values(#{name},#{password},#{age},#{cid})
     </delete>
     <select id="findMovieById" parameterType="int" resultType="com.jk.model.Shang">
           select m.id,m.name,m.type,m.standard,m.info,m.image,m.expirationdate,m.area,m.principal,m.status,
-          m.createtime,m.number,m.certification from yz_Shang m  where m.id=#{id}
+          m.createtime,m.number,m.certification,m.city,m.xian,m.address from yz_Shang m  where m.id=#{id}
     </select>
     <update id="updateMovie" >
     update yz_Shang m set m.name=#{name},m.type=#{type},
         m.standard=#{standard},m.info=#{info},m.image=#{image},
         m.area=#{area},m.principal=#{principal},m.status=#{status},
-        m.createtime=#{createtime},m.number=#{number},m.certification=#{certification} where m.id=#{id}
+        m.createtime=#{createtime},m.number=#{number},m.certification=#{certification},m.city=#{city},m.xian=#{xian},m.address=#{address} where m.id=#{id}
 
     </update>
     <update id="updateCaiPin">

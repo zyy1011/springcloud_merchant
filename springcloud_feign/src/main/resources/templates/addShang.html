@@ -80,7 +80,9 @@
                     }},
                 {field:'expirationdate',title:'申请创建时间'},
                 {field:'principal',title:'店铺负责人'},
-                {field:'area',title:'店铺地址'},
+                {field:'area',title:'店铺地址', formatter:function(value,row,index){
+                        return value = row.areaName+ "-" +row.cityName+ "-" +row.xianName+ "-" +row.address;
+                }},
                 {field:'createtime',title:'开店时间'},
                 {field:'status',title:'是否立刻开店',formatter:function(value,row,index){
                         return value==1?"是":value==2?"否":"其他";
@@ -127,8 +129,13 @@
                         var type = $("#type").val();
                         var expirationdate = $("#expirationdate").val();
                         var principal = $("#principal").val();
-                        var area = $("#area").val();
-                        var status = $("#status").val();
+                       /* var area = $("#areaid").attr("area",area);*/
+                        var area = $("#areaid").val();
+                        // var area = $("#area option[value='@ViewBag.City']").attr("selected", true);
+                        var city = $("#cityid").val();
+                        var xian = $("#xianid").val();
+                        var address = $("#address").val();
+                        var status = $("#status input:radio:checked").val();
                         var createtime = $("#createtime").val();
                        //照片
                         var certification = $("#certification").val();
@@ -151,6 +158,9 @@
                                 'expirationdate':expirationdate,
                                 'principal':principal,
                                 'area':area,
+                                'city':city,
+                                'xian':xian,
+                                'address':address,
                                 'status':status,
                                 'createtime':createtime,
                                 'number':number
@@ -354,11 +364,16 @@
             success:function(data){
                 $("#id").val(data.id);
                 $("#name").val(data.name);
-                $("#type").val(data.type);
+               /* $("#type").val(data.type);*/
+                $("#type").find("option[value='"+data.type+"']").attr("selected",true);
                 $("#standard").val(data.standard);
                 $("#info").val(data.info);
                 $("#principal").val(data.principal);
-                $("#area").val(data.area);
+                /*$("#area").val(data.area);*/
+                $("#areaid").find("option[value='"+data.area+"']").attr("selected",true);
+                $("#cityid").find("option[value='"+data.city+"']").attr("selected",true);
+                $("#xianid").find("option[value='"+data.city+"']").attr("selected",true);
+                $("#address").val(data.address);
                 //照片
                 $("#imagea").val(data.image);
                 $("#testimg").prop("src",data.image);
@@ -380,34 +395,7 @@
     }
 
 
-    function initArea(){
-        var pid = 0;
-        $.ajax({
-            url:'../user/findAreaId',
-            type:'get',
-            data:{id:pid},
-            success:function(data){
-                var html = "<option value='-1'>请选择</option>";
-                for (var i = 0; i < data.length; i++) {
-                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-                }
-                $("#areaid").html(html);
-            }
-        })
-    }
-    function changeCity(id){
-        $.ajax({
-            url:'../user/findAreaId/'+id,
-            type:'post',
-            success:function(data){
-                var html = "<option value='-1'>请选择</option>";
-                for (var i = 0; i < data.length; i++) {
-                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-                }
-                $("#cityid").html(html);
-            }
-        })
-    }
+
 
     /*]]>*/
 </script>
