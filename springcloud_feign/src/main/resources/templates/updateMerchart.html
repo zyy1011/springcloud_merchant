@@ -123,11 +123,14 @@
 
     //商品数量
     function counts() {
-
-        var number = $("#counts").val();
-        if(number<0){
-            $("#counts").val("0");
+        price=$("#counts").val();
+        if($("#counts").val()==0){
+            return
         }
+        else{
+            price>=0;
+        }
+        $("#counts").val(price);
     }
     //商品重量
     function repertory() {

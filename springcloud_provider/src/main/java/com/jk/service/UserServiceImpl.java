@@ -13,10 +13,7 @@ package com.jk.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jk.mapper.UserMapper;
-import com.jk.model.Role;
-import com.jk.model.Shang;
-import com.jk.model.UserBean;
-import com.jk.model.caipinBean;
+import com.jk.model.*;
 import com.jk.utils.HttpClientUtil;
 import com.jk.utils.Md5Util;
 import org.springframework.beans.BeanUtils;
@@ -169,6 +166,12 @@ public class UserServiceImpl implements UserService {
     @ResponseBody
     public void updateCaiPin(caipinBean caipin) {
         usermapper.updateCaiPin(caipin);
+    }
+
+    @Override
+    @ResponseBody
+    public List<AreaBean> findAreaId(Integer id) {
+        return usermapper.findAreaId(id);
     }
 
 

@@ -99,6 +99,9 @@ values(#{name},#{password},#{age},#{cid})
           select s.id,s.name,s.type,s.info,s.image,s.area,s.status,s.number,s.price from yz_table s  where s.id=#{id}
     </select>
 
-
+    <!-- 查询地区 -->
+    <select id="findAreaId" parameterType="int" resultType="com.jk.model.AreaBean">
+        select * from t_area where pid = #{id}
+     </select>
 
 </mapper>

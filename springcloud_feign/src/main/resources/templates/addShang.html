@@ -380,6 +380,35 @@
     }
 
 
+    function initArea(){
+        var pid = 0;
+        $.ajax({
+            url:'../user/findAreaId',
+            type:'get',
+            data:{id:pid},
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                $("#areaid").html(html);
+            }
+        })
+    }
+    function changeCity(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'post',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                $("#cityid").html(html);
+            }
+        })
+    }
+
     /*]]>*/
 </script>
 </html>

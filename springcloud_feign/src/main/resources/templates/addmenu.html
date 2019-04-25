@@ -45,215 +45,124 @@
     <li><font size="7px">商家菜单</font></li>
 </ul>
 <div class="modal-body"  id="divcss5">
-    <!-- 新选项卡 -->
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a href="#home" data-toggle="tab">
-                人员基本信息
-            </a>
-        </li>
-        <li>
-            <a href="#linkman" data-toggle="tab">
-                店铺基本信息
-            </a>
-        </li>
-        <li>
-            <a href="#leixing" data-toggle="tab">
-                类型
-            </a>
-        </li>
-
-        <li>
-            <a href="#bank" data-toggle="tab">
-                执照证明
-            </a>
-        </li>
-
-    </ul>
-
-
-
-    <!-- 选项卡下内容 -->
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>用户名字</td>
-                    <td>
-                        <input type="hidden" id="id" name="id">
-                        <input type="text" class="form-control" id="name" name="name" style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品类型</td>
-                    <td>
-                        <select id="typea" name="type" class="form-control">
-                            <option value="-1" value="${type}">请选择</option>
-                            <option value="1" value="${type}">美食</option>
-                            <option value="2" value="${type}">快餐便当</option>
-                            <option value="3" value="${type}">特色菜系</option>
-                            <option value="4" value="${type}">异国料理</option>
-                            <option value="5" value="${type}">小吃夜宵</option>
-                            <option value="6" value="${type}">甜品饮品</option>
-                            <option value="7" value="${type}">果蔬生鲜</option>
-                            <option value="7" value="${type}">商店超市</option>
-                            <option value="8" value="${type}">鲜花绿植</option>
-                            <option value="9" value="${type}">医疗健康</option>
-                            <option value="10" value="${type}">早餐</option>
-                            <option value="11" value="${type}">午餐</option>
-                            <option value="12" value="${type}">下午茶</option>
-                            <option value="13" value="${type}">晚餐</option>
-                        </select>
-                        <!-- <input type="text" class="form-control" id="type" name="type" style="border:0px;">-->
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="standard">商品规格</label>
-
-                        </lable>
-                    </td>
-                    <td>
-                        <div class="col-md-4" id="standard">
-                            <input type="radio" name="standard" class="toggle" value="1">大份
-                            <input type="radio" name="standard" class="toggle" value="2">小份
-                        </div>
-                    </td>
-                </tr>
-                <!--<tr>
-                    <td>商品规格</td>
-                    <td>
-                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;">
-                    </td>
-                </tr>-->
-            </table>
-        </div>
-
+        <!-- 新选项卡 -->
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">
+                    菜品信息
+                </a>
+            </li>
+            <li>
+                <a href="#linkman" data-toggle="tab">
+                    金额
+                </a>
+            </li>
+            <li>
+                <a href="#bank" data-toggle="tab">
+                    菜品样式
+                </a>
+            </li>
+        </ul>
 
 
         <!-- 选项卡下内容 -->
-        <div class="tab-pane fade" id="linkman">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>商品重量</td>
-                    <td>
-                        <input type="text" class="form-control" id="counts" name="counts" style="border:0px;" onblur="counts()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品保质期</td>
-                    <td>
-                        <input type="text" class="form-control date" id="expirationdate" name="expirationdate"
-                               style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品库存</td>
-                    <td>
-                        <input type="text" class="form-control" id="repertory" name="repertory" style="border:0px;" min="0" onblur="repertory()">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>菜品名称</td>
+                        <td>
+                            <input type="hidden" id="id" name="id">
+                            <input type="text" class="form-control" id="name" name="name" style="border:0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>菜品类型</td>
+                        <td>
+                            <select id="typea" name="type" class="form-control">
+                                <option value="${type}">请选择</option>
+                                <option value="1">美食</option>
+                                <option value="2">快餐便当</option>
+                                <option value="3">特色菜系</option>
+                                <option value="4">异国料理</option>
+                                <option value="5">小吃夜宵</option>
+                                <option value="6">甜品饮品</option>
+                                <option value="7">果蔬生鲜</option>
+                                <option value="8">商店超市</option>
+                                <option value="9">鲜花绿植</option>
+                                <option value="10">医疗健康</option>
+                                <option value="11">早餐</option>
+                                <option value="12">午餐</option>
+                                <option value="13">下午茶</option>
+                                <option value="14">晚餐</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>菜品描述</td>
+                        <td>
+                            <input type="text" class="form-control" id="info" name="info" style="border:0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>菜品库存</td>
+                        <td>
+                            <input type="number" class="form-control" id="counts" name="counts" style="border:0px;"
+                                   onblur="counts()">
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>购买人数</td>
-                    <td>
-                        <input type="text" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;" onblur="peoplebuy()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>推广商品</td>
-                    <td>
-                        <input type="text" class="form-control " id="swag" name="swag" style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>活动商品</td>
-                    <td>
-                        <input type="text" class="form-control" id="promotionofgoods" name="promotionofgoods"
-                               style="border:0px;">
-                    </td>
-                </tr>
-            </table>
+
+            <!-- 选项卡下内容 -->
+            <div class="tab-pane fade" id="linkman">
+                <table class="table table-bordered table-striped">
+
+                    <tr>
+                        <td>购买人数</td>
+                        <td>
+                            <input type="number" class="form-control" id="peoplebuy" name="peoplebuy" style="border:0px;"
+                                   onblur="peoplebuy()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>金额</td>
+                        <td>
+                            <input type="number" class="form-control" id="price" name="price"
+                                   style="border:0px;" onblur="price()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>配送费</td>
+                        <td>
+                            <input type="number" class="form-control" id="peisong" name="peisong" style="border:0px;"
+                                   onblur="counts()">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="bank">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>菜品样式</td>
+                        <td>
+                            <input type="file" id="butOne">
+                            <input type="hidden" id="imagea" name="image">
+                            <div id="showImgDiv"
+                                 style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
+                                <img src="" id="testimg" style="width: 150px;height: 150px;"/>
+                            </div>
+                            <div id="showBars"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <!-- 选项卡下内容 -->
-        <div class="tab-pane fade" id="leixing">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>
-                        <label for="invoicetype">发票类型</label>
 
-                        </lable>
-                    </td>
-                    <td>
-                        <div class="col-md-4" id="invoicetype">
-                            <input type="radio" name="invoicetype" class="toggle" value="1">电子
-                            <input type="radio" name="invoicetype" class="toggle" value="2">纸张
-                        </div>
-                    </td>
-                </tr>
-                <!--<tr>
-                    <td>发票类型</td>
-                    <td>
-                        <input type="text" class="form-control" id="invoicetype" name="invoicetype" style="border:0px;">
-                    </td>
-                </tr>-->
-                <tr>
-                    <td>发票内容</td>
-                    <td>
-                        <input type="text" class="form-control" id="invoicecontents" name="invoicecontents"
-                               style="border:0px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>发票金额</td>
-                    <td>
-                        <input type="text" class="form-control" id="invoiceprice" name="invoiceprice"
-                               style="border:0px;" onblur="invoiceprice()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品描述</td>
-                    <td>
-                        <input type="text" class="form-control" id="info" name="info" style="border:0px;">
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="tab-pane fade" id="bank">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>商品图片</td>
-                    <td>
-                        <input type="file" id="butOne">
-                        <input type="hidden" id="image" name="image">
-                        <div id="showImgDiv"
-                             style="width: 150px;height: 150px;border-style:solid;border-width:1px; border-color:black;">
-                            <img src="" id="testimg" style="width: 150px;height: 150px;"/>
-                        </div>
-                        <div id="showBars"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>推广商品价格</td>
-                    <td>
-                        <input type="text" class="form-control " id="swagprice" name="swagprice" style="border:0px;" onblur="swagprice()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>活动商品价格</td>
-                    <td>
-                        <input type="text" class="form-control" id="promotionprice" name="promotionprice"
-                               style="border:0px;" onblur="promotionprice()">
-                    </td>
-                </tr>
-
-            </table>
-        </div>
+    <button type="button" class="btn btn-primary"  onclick="addMenu()">　提交申请　</button>
     </div>
-        <button type="button" class="btn btn-primary"  onclick="addMenu()">　提　　交　</button>
-</div>
-
 </body>
 <script type="text/javascript">
     $(function(){
@@ -321,48 +230,28 @@
 
 function addMenu(){
     var name = $("#name").val();
-    var type = $("#type").val();
-    /*var standard = $("#standard").val();*/
-    var standard = $('#standard input:radio:checked').val();
-    var image = $("#image").val();
+    var type = $("#typea").val();
+    var image = $("#imagea").val();
     var info = $("#info").val();
     var counts = $("#counts").val();
-    var expirationdate = $("#expirationdate").val();
-    var repertory = $("#repertory").val();
     var peoplebuy = $("#peoplebuy").val();
     var updown = $("#updown").val();
-    var swag = $("#swag").val();
-    var promotionofgoods = $("#promotionofgoods").val();
-    var swagprice = $("#swagprice").val();
-    var promotionprice = $("#promotionprice").val();
-    /*var invoicetype = $("#invoicetype").val();*/
-    var invoicetype = $('#invoicetype input:radio:checked').val();
-    var invoicecontents = $("#invoicecontents").val();
-    var invoiceprice = $("#invoiceprice").val();
-    var referencenumber = $("#referencenumber").val();
+    var price = $("#price").val();
+    var peisong = $("#peisong").val();
     $.ajax({
         url:'../merchant/saveMerchant',
         contentType:'application/json',
         type:'post',
         // data:$("#bookForm").serialize(),
         data:JSON.stringify({
-            'name':name,
-            'type':type,
-            'image':image,
-            'standard':standard,
-            'info':info,
-            'counts':counts,
-            'expirationdate':expirationdate,
-            'repertory':repertory,
-            'peoplebuy':peoplebuy,
-            'referencenumber':referencenumber,
-            'swag':swag,
-            'promotionofgoods':promotionofgoods,
-            'swagprice':swagprice,
-            'promotionprice':promotionprice,
-            'invoicetype':invoicetype,
-            'invoicecontents':invoicecontents,
-            'invoiceprice':invoiceprice
+            'name': name,
+            'type': type,
+            'image': image,
+            'info': info,
+            'counts': counts,
+            'peoplebuy': peoplebuy,
+            'price': price,
+            'peisong': peisong,
         }),
         success:function(){
             location.href="../page/tosuccess";

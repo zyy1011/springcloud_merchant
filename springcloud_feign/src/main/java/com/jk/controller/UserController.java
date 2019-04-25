@@ -11,10 +11,7 @@
 package com.jk.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.jk.model.Role;
-import com.jk.model.Shang;
-import com.jk.model.UserBean;
-import com.jk.model.caipinBean;
+import com.jk.model.*;
 import com.jk.service.UserService;
 import com.jk.utils.HttpClientUtil;
 import com.jk.utils.JsonUtil;
@@ -160,6 +157,12 @@ public class UserController {
     }
 
 
+    @GetMapping("findAreaId/{id}")
+    @ResponseBody
+    public List<AreaBean> findAreaId(@PathVariable Integer id){
+        System.out.println(AreaBean.class);
+        return userService.findAreaId(id);
+    }
 
 
 

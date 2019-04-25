@@ -1,9 +1,6 @@
 package com.jk.mapper;
 
-import com.jk.model.Role;
-import com.jk.model.Shang;
-import com.jk.model.UserBean;
-import com.jk.model.caipinBean;
+import com.jk.model.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -52,4 +49,5 @@ public interface UserMapper {
 
     caipinBean findCaPinById(Integer id);
 
+    List<AreaBean> findAreaId(Integer id);
 }

@@ -1,9 +1,6 @@
 package com.jk.service;
 
-import com.jk.model.Role;
-import com.jk.model.Shang;
-import com.jk.model.UserBean;
-import com.jk.model.caipinBean;
+import com.jk.model.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,4 +74,8 @@ public interface UserService {
     @PutMapping("updateCaiPin")
     @ResponseBody
     void updateCaiPin(@RequestBody caipinBean caipin);
+
+    @GetMapping("findAreaId/{id}")
+    @ResponseBody
+    List<AreaBean> findAreaId(@PathVariable("id") Integer id);
 }
