@@ -185,6 +185,7 @@
 
 
     $(function(){
+        initArea();
         $('.date').datetimepicker({
             language: 'zh-CN',//显示中文
             //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
@@ -260,6 +261,50 @@
             $("#certification").val(data);
         }
     })
+
+    function initArea(){
+        var id = 0;
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeCity(data.id);
+                $("#areaid").html(html);
+            }
+        })
+    }
+    function changeCity(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#cityid").html(html);
+            }
+        })
+    }
+    function changeXian(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#xianid").html(html);
+            }
+        })
+    }
 
 </script>
 </html>
