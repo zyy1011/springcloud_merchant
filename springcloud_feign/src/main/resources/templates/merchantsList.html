@@ -42,8 +42,8 @@
                 </tr>
                 <tr>
                     <td >价格</td>
-                    <td> <input type="number" class="form-control" id="Startprice" name="price" >
-                    <input type="number" class="form-control" id="Endprice" name="price" ></td>
+                    <td> <input type="number" class="form-control" id="Startprice" name="price"  min="0" onclick="numberPrice1()">
+                    <input type="number" class="form-control" id="Endprice" name="price"  min="1" onclick="numberPrice2()"></td>
 
                 </tr>
                 <tr>
@@ -67,6 +67,22 @@
 </div>
 </body>
 <script>
+
+    //价格
+    function numberPrice1() {
+        var Startprice = $("#Startprice").val();
+        if(Startprice<0){
+            $("#Startprice").val("0");
+        }
+    }
+    //价格
+    function numberPrice2() {
+        var Endprice = $("#Endprice").val();
+        if(Endprice<0){
+            $("#Endprice").val("1");
+        }
+    }
+
 
     function searchInvoice(){
         $("#merchantsTable").bootstrapTable('refresh');
