@@ -109,7 +109,12 @@
                 <tr>
                     <td>商户规模</td>
                     <td>
-                        <input type="text" class="form-control" id="standard" name="standard" style="border:0px;"  onblur="standard()">
+                        <select id="standard" name="standard" class="form-control">
+                            <option value="${standard}">请选择</option>
+                            <option value="1">大型</option>
+                            <option value="2" >小型</option>
+                            <option value="3" >其他</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -119,9 +124,36 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>地址</td>
                     <td>
-                        <input type="text" class="form-control" id="area" name="area" style="border:0px;width: 300px;">
+                        <div class="col-md-2">
+                            <label for="areaid">地区</label>
+                        </div>
+                    </td>
+                    <td>
+                        <table align="left">
+                            <div class="col-md-4">
+                                <tr>
+                                    <td>
+                                        <select class="form-control" name="area" id="areaid" onChange="changeCity(this.value)">
+                                            <option value="${area}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="city" id="cityid" onChange="changeXian(this.value)">
+                                            <option value="${city}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="xian" id="xianid">
+                                            <option value="${xian}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="请输入具体地址"/>
+                                    </td>
+                                </tr>
+                            </div>
+                        </table>
                     </td>
                 </tr>
                 <tr>
@@ -279,17 +311,21 @@
         var name = $("#name").val();
         var standard = $("#standard").val();
         var info = $("#info").val();
-        var type = $("#typea").val();
+        var type = $("#type").val();
         var expirationdate = $("#expirationdate").val();
         var principal = $("#principal").val();
-        var area = $("#area").val();
-        /*var status = $("#status").val();*/
-        var status = $('#status input:radio:checked').val();
+        /* var area = $("#areaid").attr("area",area);*/
+        var area = $("#areaid").val();
+        // var area = $("#area option[value='@ViewBag.City']").attr("selected", true);
+        var city = $("#cityid").val();
+        var xian = $("#xianid").val();
+        var address = $("#address").val();
+        var status = $("#status input:radio:checked").val();
         var createtime = $("#createtime").val();
         //照片
         var certification = $("#certification").val();
         //照片
-        var image = $("#image").val();
+        var image = $("#imagea").val();
         var number = $("#number").val();
         $.ajax({
             url:'../user/saveUser',
@@ -304,9 +340,13 @@
                 'type':type,
                 //照片
                 'image':image,
+
                 'expirationdate':expirationdate,
                 'principal':principal,
-                'area':area,
+                'areaName':area,
+                'cityName':city,
+                'xianName':xian,
+                'address':address,
                 'status':status,
                 'createtime':createtime,
                 'number':number
@@ -318,6 +358,7 @@
         });
     }
     $(function(){
+        initArea();
         $('.date').datetimepicker({
             language: 'zh-CN',//显示中文
             //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
@@ -328,5 +369,49 @@
             todayBtn: true//显示今日按钮
         });
     })
+
+    function initArea(){
+        var id = 0;
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeCity(data.id);
+                $("#areaid").html(html);
+            }
+        })
+    }
+    function changeCity(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#cityid").html(html);
+            }
+        })
+    }
+    function changeXian(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#xianid").html(html);
+            }
+        })
+    }
 </script>
 </html>
