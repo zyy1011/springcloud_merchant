@@ -6,12 +6,33 @@
       select id,text,pid,href from t_nav where pid=#{pid}
    </select>
    <select id="findMerchantCount" parameterType="com.jk.model.t_goods_one" resultType="int">
-      select count(*) from t_goods_one
+      select count(*) from t_goods_one m
+       <include refid="marketWhere"></include>
    </select>
    <select id="findMerchantPage" resultType="com.jk.model.t_goods_one">
-      select * from t_goods_one
+      select * from t_goods_one m
+       <include refid="marketWhere"></include>
       limit #{start},#{rows}
    </select>
+    <sql id="marketWhere">
+        where 1=1
+        /*名字模糊查询*/
+        <if test="goods.name !=null and goods.name !=''">
+            and m.name like '%${goods.name}%'
+        </if>
+        /*库存*/
+        <if test="goods.counts !=null and goods.counts !=''">
+            and m.counts = #{goods.counts}
+        </if>
+        /*价格区间查询*/
+        <if test="goods.Startprice !=null and goods.Startprice !=''">
+            and m.price >= #{goods.Startprice}
+        </if>
+        <if test="goods.Endprice !=null and goods.Endprice !=''">
+            and m.price &lt;= #{goods.Endprice}
+        </if>
+
+    </sql>
 
     <select id="findMerchantPageAll" resultType="com.jk.model.t_goods_one">
       select * from t_goods_one

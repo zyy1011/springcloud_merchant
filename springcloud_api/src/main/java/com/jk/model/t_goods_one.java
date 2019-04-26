@@ -27,6 +27,26 @@ public class t_goods_one implements Serializable {
     private String peisong;
 
 
+    private Integer Startprice;
+    private Integer Endprice;
+
+
+    public Integer getStartprice() {
+        return Startprice;
+    }
+
+    public void setStartprice(Integer startprice) {
+        Startprice = startprice;
+    }
+
+    public Integer getEndprice() {
+        return Endprice;
+    }
+
+    public void setEndprice(Integer endprice) {
+        Endprice = endprice;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -120,6 +140,8 @@ public class t_goods_one implements Serializable {
                 ", updown=" + updown +
                 ", price=" + price +
                 ", peisong='" + peisong + '\'' +
+                ", Startprice=" + Startprice +
+                ", Endprice=" + Endprice +
                 '}';
     }
 }

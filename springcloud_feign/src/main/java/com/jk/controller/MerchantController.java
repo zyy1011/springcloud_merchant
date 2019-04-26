@@ -32,8 +32,8 @@ public class MerchantController {
     //查询商品表
     @GetMapping("findMerchantPage")
     @ResponseBody
-    public HashMap<String, Object> findMerchantPage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows){
-        return merchantService.findMerchantPage(page,rows);
+    public HashMap<String, Object> findMerchantPage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows,@RequestParam("searchList") String searchList){
+        return merchantService.findMerchantPage(page,rows,searchList);
     }
    //回显
     @GetMapping("findMarchantById/{id}")

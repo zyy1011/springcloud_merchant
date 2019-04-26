@@ -19,9 +19,9 @@ public interface UserMapper {
 
     UserBean UserAccount(String name);
 
-    int findUserCount();
+    int findUserCount(@Param("shang") Shang shang);
 
-    List<Shang> findUserList(@Param("start")int start,@Param("rows") Integer rows);
+    List<Shang> findUserList(@Param("start")int start,@Param("rows") Integer rows,@Param("shang") Shang shang);
 
     void saveMovie(Shang shang);
 

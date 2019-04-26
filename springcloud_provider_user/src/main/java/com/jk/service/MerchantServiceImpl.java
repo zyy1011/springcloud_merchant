@@ -1,6 +1,8 @@
 package com.jk.service;
 
+import com.alibaba.fastjson.JSON;
 import com.jk.mapper.MerchantMapper;
+import com.jk.model.Shang;
 import com.jk.model.t_goods_one;
 import com.jk.model.NavBean;
 
@@ -32,7 +34,7 @@ public class MerchantServiceImpl implements MerchantService {
     @ResponseBody
     @Override
     public List<NavBean> findTreeList() {
-        int pid=0;
+        int pid = 0;
         List<NavBean> list = treeNodes(pid);
         return list;
     }
@@ -42,37 +44,49 @@ public class MerchantServiceImpl implements MerchantService {
         for (NavBean navBean : list) {
             Integer id = navBean.getId();
             List<NavBean> nodes = treeNodes(id);
-            if(nodes.size()<=0) {
+            if (nodes.size() <= 0) {
                 //无子节点
                 navBean.setSelectable(true);
-            }else {
+            } else {
                 navBean.setSelectable(false);
                 navBean.setNodes(nodes);
             }
         }
         return list;
     }
+
     //查询
     @Override
     @ResponseBody
-    public HashMap<String, Object> findMerchantPage(@RequestParam("page")Integer page, @RequestParam("rows") Integer rows) {
+    public HashMap<String, Object> findMerchantPage(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows, @RequestParam("searchList") String searchList) {
         HashMap<String, Object> hashMap = new HashMap<>();
+        t_goods_one goods = JSON.parseObject(searchList, t_goods_one.class);
 
         List range = redisTemplate.opsForList().range("merList", (page - 1) * rows, page * rows - 1);
 
-        if (range.isEmpty()) {
-            System.out.println("走数据库");
+        if (null != goods.getName()||null != goods.getCounts()||null != goods.getPrice()){
+            System.out.println("条查走数据库");
             //查询总条数
-            int total = merchantMapper.findMerchantCount();
+            int total = merchantMapper.findMerchantCount(goods);
             //分页查询
             int start = (page - 1) * rows;
-            List<t_goods_one> list = merchantMapper.findMerchantPage(start, rows);
-            List<t_goods_one> listAll = merchantMapper.findMerchantPageAll();
-            redisTemplate.opsForList().rightPushAll("merList",listAll);
+            List<t_goods_one> list = merchantMapper.findMerchantPage(start, rows,goods);
             hashMap.put("total", total);
             hashMap.put("rows", list);
             return hashMap;
-        }else{
+        }else if (range.isEmpty()) {
+            System.out.println("走数据库");
+            //查询总条数
+            int total = merchantMapper.findMerchantCount(goods);
+            //分页查询
+            int start = (page - 1) * rows;
+            List<t_goods_one> list = merchantMapper.findMerchantPage(start, rows,goods);
+            List<t_goods_one> listAll = merchantMapper.findMerchantPageAll();
+            redisTemplate.opsForList().rightPushAll("merList", listAll);
+            hashMap.put("total", total);
+            hashMap.put("rows", list);
+            return hashMap;
+        } else {
             System.out.println("走redis");
             int size = redisTemplate.opsForList().range("merList", 0, -1).size();
             hashMap.put("total", size);
@@ -97,15 +111,15 @@ public class MerchantServiceImpl implements MerchantService {
     public void updateStatus(Integer id) {
         t_goods_one marchantById = merchantMapper.findMarchantById(id);
 
-        if (marchantById.getUpdown()==1){
+        if (marchantById.getUpdown() == 1) {
             marchantById.setUpdown(2);
-            System.out.println("第一接参数"+marchantById.getUpdown());
+            System.out.println("第一接参数" + marchantById.getUpdown());
 
-        }else {
+        } else {
             marchantById.setUpdown(1);
-            System.out.println("第二接参数"+marchantById.getUpdown());
+            System.out.println("第二接参数" + marchantById.getUpdown());
         }
-        System.out.println("最后接参数"+marchantById.getUpdown());
+        System.out.println("最后接参数" + marchantById.getUpdown());
         merchantMapper.updateMerchant(marchantById);
     }
 
@@ -114,7 +128,7 @@ public class MerchantServiceImpl implements MerchantService {
     @ResponseBody
     public void saveMerchant(t_goods_one tgoodsone) {
         merchantMapper.saveMerchant(tgoodsone);
-        System.out.println("-----------------------"+ tgoodsone);
+        System.out.println("-----------------------" + tgoodsone);
     }
 
     @Override

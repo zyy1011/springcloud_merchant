@@ -62,6 +62,25 @@ public class Shang {
     /**详细地址 */
     private String address ;
 
+    private String StartTime;
+    private String date;
+
+    public String getStartTime() {
+        return StartTime;
+    }
+
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -236,6 +255,8 @@ public class Shang {
                 ", xian=" + xian +
                 ", xianName='" + xianName + '\'' +
                 ", address='" + address + '\'' +
+                ", StartTime='" + StartTime + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

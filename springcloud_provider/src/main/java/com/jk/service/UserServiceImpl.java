@@ -104,13 +104,14 @@ public class UserServiceImpl implements UserService {
     @GetMapping("queryUser")
     @ResponseBody
     @Override
-    public HashMap<String, Object> findMoviePage(Integer page, Integer rows) {
+    public HashMap<String, Object> findMoviePage(Integer page, Integer rows,String searchList) {
         HashMap<String, Object> hashMap = new HashMap<>();
+        Shang shang = JSON.parseObject(searchList, Shang.class);
         //查询总条数
-        int total = usermapper.findUserCount();
+        int total = usermapper.findUserCount(shang);
         //分页查询
         int start = (page - 1) * rows;
-        List<Shang> list = usermapper.findUserList(start,rows);
+        List<Shang> list = usermapper.findUserList(start,rows,shang);
         hashMap.put("total", total);
         hashMap.put("rows", list);
         return hashMap;

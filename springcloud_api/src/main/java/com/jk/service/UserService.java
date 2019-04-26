@@ -22,7 +22,7 @@ public interface UserService {
 
     @GetMapping("queryUser")
     @ResponseBody
-    HashMap<String,Object> findMoviePage(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows);
+    HashMap<String,Object> findMoviePage(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows,@RequestParam("searchList")String searchList);
 
     @PostMapping("saveUser")
     @ResponseBody

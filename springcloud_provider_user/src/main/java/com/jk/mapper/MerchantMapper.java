@@ -12,8 +12,8 @@ public interface MerchantMapper {
     List<NavBean> findTreeList(Integer pid);
 
 
-    int findMerchantCount();
-    List<t_goods_one> findMerchantPage(@Param("start") int start, @Param("rows") Integer rows);
+  
+    List<t_goods_one> findMerchantPage(@Param("start") int start, @Param("rows") Integer rows,@Param("goods") t_goods_one goods);
 
     List<t_goods_one> findMerchantPageAll();
 
@@ -45,4 +45,6 @@ public interface MerchantMapper {
     void updateShang( @Param("ids")Integer[] ids);
 
     void updateXai( @Param("ids") Integer[] ids);
+
+    int findMerchantCount(@Param("goods")t_goods_one goods);
 }

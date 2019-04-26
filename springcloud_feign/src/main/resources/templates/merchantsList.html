@@ -29,6 +29,31 @@
 
 </head>
 <body>
+<div id="toolbar">
+    <form class="form-inline">
+            <table>
+                <tr>
+                    <td>商品名称</td>
+                    <td> <input type="text" class="form-control" id="name" name="name" ></td>
+                </tr>
+                <tr>
+                    <td>商品库存</td>
+                    <td> <input type="text" class="form-control" id="counts" name="counts" ></td>
+                </tr>
+                <tr>
+                    <td >价格</td>
+                    <td> <input type="number" class="form-control" id="Startprice" name="price"  min="0" onclick="numberPrice1()">
+                    <input type="number" class="form-control" id="Endprice" name="price"  min="1" onclick="numberPrice2()"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="button" class="btn btn-primary glyphicon glyphicon-search" onclick="searchInvoice()">搜索</button>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</div>
 <div>
     <table id="merchantsTable">
         <button type="button" class="btn btn-success glyphicon glyphicon-minus" onclick="deleteMany()">删除</button>
@@ -42,6 +67,27 @@
 </div>
 </body>
 <script>
+
+    //价格
+    function numberPrice1() {
+        var Startprice = $("#Startprice").val();
+        if(Startprice<0){
+            $("#Startprice").val("0");
+        }
+    }
+    //价格
+    function numberPrice2() {
+        var Endprice = $("#Endprice").val();
+        if(Endprice<0){
+            $("#Endprice").val("1");
+        }
+    }
+
+
+    function searchInvoice(){
+        $("#merchantsTable").bootstrapTable('refresh');
+    }
+
     $(function () {
         initMerchantsTable();
     })
@@ -60,7 +106,14 @@
             queryParams: function () {
                 return {
                     page: this.pageNumber,
-                    rows: this.pageSize
+                    rows: this.pageSize,
+                    searchList:JSON.stringify({
+                        name:$("#name").val(),
+                        counts:$("#counts").val(),
+                        Startprice:$("#Startprice").val(),
+                        Endprice:$("#Endprice").val(),
+
+                    })
                 };
             },
             columns: [
