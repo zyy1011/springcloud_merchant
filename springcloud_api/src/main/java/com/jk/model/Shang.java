@@ -50,6 +50,25 @@ public class Shang {
     /** 店铺资格证 */
     private String certification ;
 
+    private String StartTime;
+    private String date;
+
+    public String getStartTime() {
+        return StartTime;
+    }
+
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -171,6 +190,8 @@ public class Shang {
                 ", status=" + status +
                 ", number=" + number +
                 ", certification='" + certification + '\'' +
+                ", StartTime='" + StartTime + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

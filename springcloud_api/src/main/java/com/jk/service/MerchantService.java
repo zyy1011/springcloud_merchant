@@ -16,7 +16,7 @@ public interface MerchantService {
 
     @GetMapping("findMerchantPage")
     @ResponseBody
-    HashMap<String, Object> findMerchantPage(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows);
+    HashMap<String, Object> findMerchantPage(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows,@RequestParam("searchList") String searchList);
 
     @GetMapping("findMarchantById/{id}")
     @ResponseBody

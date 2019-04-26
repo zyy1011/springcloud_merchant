@@ -69,8 +69,8 @@ public class UserController {
     //查询用户表
     @GetMapping("queryUser")
     @ResponseBody
-    public HashMap<String,Object> findMoviePage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows){
-        return userService.findMoviePage(page,rows);
+    public HashMap<String,Object> findMoviePage(@RequestParam("page")Integer page, @RequestParam("rows")Integer rows,@RequestParam("searchList") String searchList){
+        return userService.findMoviePage(page,rows,searchList);
     }
     //查询用户表
     @GetMapping("queryCaipin")
