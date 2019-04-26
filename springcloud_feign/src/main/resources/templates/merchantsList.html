@@ -34,15 +34,17 @@
             <table>
                 <tr>
                     <td>商品名称</td>
-                    <td> <input type="text" class="form-control" id="name" name="name" ></td>
+                    <td> <input type="text" class="form-control" id="namer" name="name" ></td>
                 </tr>
                 <tr>
                     <td>商品库存</td>
-                    <td> <input type="text" class="form-control" id="counts" name="counts" ></td>
+                    <td> <input type="text" class="form-control" id="StartCounts" name="counts" >  --
+                        <input type="text" class="form-control" id="EndCounts" name="counts" >
+                    </td>
                 </tr>
                 <tr>
                     <td >价格</td>
-                    <td> <input type="number" class="form-control" id="Startprice" name="price"  min="0" onclick="numberPrice1()">
+                    <td> <input type="number" class="form-control" id="Startprice" name="price"  min="0" onclick="numberPrice1()">  --
                     <input type="number" class="form-control" id="Endprice" name="price"  min="1" onclick="numberPrice2()"></td>
 
                 </tr>
@@ -108,8 +110,9 @@
                     page: this.pageNumber,
                     rows: this.pageSize,
                     searchList:JSON.stringify({
-                        name:$("#name").val(),
-                        counts:$("#counts").val(),
+                        name:$("#namer").val(),
+                        Startprice:$("#Startprice").val(),
+                        EndCounts:$("#EndCounts").val(),
                         Startprice:$("#Startprice").val(),
                         Endprice:$("#Endprice").val(),
 
@@ -163,7 +166,7 @@
                 {field: 'info', title: '商品描述', align: 'center'},
                 {field: 'counts', title: '商品库存', align: 'center'},
                 {field: 'peoplebuy', title: '购买人数', align: 'center'},
-                {field: 'price', title: '金额', align: 'center'},
+                {field: 'price', title: '价格', align: 'center'},
                 {
                     field: 'updown', title: '上下架', align: 'center', formatter: function (value, row, index) {
                         var updown = row.updown == 1 ? "上架" : '下架';

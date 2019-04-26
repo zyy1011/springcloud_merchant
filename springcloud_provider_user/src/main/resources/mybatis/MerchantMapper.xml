@@ -31,6 +31,13 @@
         <if test="goods.Endprice !=null and goods.Endprice !=''">
             and m.price &lt;= #{goods.Endprice}
         </if>
+        /*库存区间查询*/
+        <if test="goods.StartCounts !=null and goods.StartCounts !=''">
+            and m.counts >= #{goods.StartCounts}
+        </if>
+        <if test="goods.EndCounts !=null and goods.EndCounts !=''">
+            and m.counts &lt;= #{goods.EndCounts}
+        </if>
 
     </sql>
 

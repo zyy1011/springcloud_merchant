@@ -64,7 +64,7 @@ public class MerchantServiceImpl implements MerchantService {
 
         List range = redisTemplate.opsForList().range("merList", (page - 1) * rows, page * rows - 1);
 
-        if (null != goods.getName()||null != goods.getCounts()||null != goods.getPrice()){
+        if (("" != goods.getName()| null != goods.getName())||null != goods.getCounts()||null != goods.getPrice()){
             System.out.println("条查走数据库");
             //查询总条数
             int total = merchantMapper.findMerchantCount(goods);

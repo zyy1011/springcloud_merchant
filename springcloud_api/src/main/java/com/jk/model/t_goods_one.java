@@ -29,7 +29,25 @@ public class t_goods_one implements Serializable {
 
     private Integer Startprice;
     private Integer Endprice;
+    private Integer StartCounts;
+    private Integer EndCounts;
 
+
+    public Integer getStartCounts() {
+        return StartCounts;
+    }
+
+    public void setStartCounts(Integer startCounts) {
+        StartCounts = startCounts;
+    }
+
+    public Integer getEndCounts() {
+        return EndCounts;
+    }
+
+    public void setEndCounts(Integer endCounts) {
+        EndCounts = endCounts;
+    }
 
     public Integer getStartprice() {
         return Startprice;
@@ -142,6 +160,8 @@ public class t_goods_one implements Serializable {
                 ", peisong='" + peisong + '\'' +
                 ", Startprice=" + Startprice +
                 ", Endprice=" + Endprice +
+                ", StartCounts=" + StartCounts +
+                ", EndCounts=" + EndCounts +
                 '}';
     }
 }
