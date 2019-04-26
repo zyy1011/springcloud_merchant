@@ -32,7 +32,7 @@ values(#{name},#{password},#{age},#{cid})
 
 
     <select id="findUserList" resultType="com.jk.model.Shang">
-        select u.name,u.type,u.standard,u.info,u.image,u.expirationdate,u.principal,u.status,u.createtime,u.number,u.certification,t.name areaName,t2.name cityName,t3.name xianName from yz_Shang u
+        select u.id,u.name,u.type,u.standard,u.info,u.image,u.expirationdate,u.principal,u.status,u.createtime,u.number,u.certification,u.address,t.name areaName,t2.name cityName,t3.name xianName from yz_Shang u
         LEFT JOIN t_area t on u.areaName=t.id
 		LEFT JOIN t_area t2 on u.cityName=t2.id
 		LEFT JOIN t_area t3 on u.xianName=t3.id
@@ -56,8 +56,8 @@ values(#{name},#{password},#{age},#{cid})
     </select>
 
     <insert id="saveMovie" parameterType="com.jk.model.Shang">
-        insert into yz_Shang (name,type,standard,info,image,expirationdate,area,principal,status,createtime,number,certification,city,xian,address)
-         values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{area},#{principal},#{status},#{createtime},#{number},#{certification},#{city},#{xian},#{address})
+        insert into yz_Shang (name,type,standard,info,image,expirationdate,areaName,principal,status,createtime,number,certification,cityName,xianName,address)
+         values (#{name},#{type},#{standard},#{info},#{image},#{expirationdate},#{areaName},#{principal},#{status},#{createtime},#{number},#{certification},#{cityName},#{xianName},#{address})
     </insert>
 
     <insert id="saveCaiPin" parameterType="com.jk.model.caipinBean">
@@ -72,14 +72,17 @@ values(#{name},#{password},#{age},#{cid})
         delete from yz_table where id=#{id}
     </delete>
     <select id="findMovieById" parameterType="int" resultType="com.jk.model.Shang">
-          select m.id,m.name,m.type,m.standard,m.info,m.image,m.expirationdate,m.area,m.principal,m.status,
-          m.createtime,m.number,m.certification,m.city,m.xian,m.address from yz_Shang m  where m.id=#{id}
+         select u.id,u.name,u.type,u.standard,u.info,u.image,u.expirationdate,u.principal,u.status,u.createtime,u.number,u.certification,u.address,u.areaName area,u.cityName city,u.xianName xian ,t.name areaName,t2.name cityName,t3.name xianName from yz_Shang u
+        LEFT JOIN t_area t on u.areaName=t.id
+		LEFT JOIN t_area t2 on u.cityName=t2.id
+		LEFT JOIN t_area t3 on u.xianName=t3.id
+          where u.id=#{id}
     </select>
     <update id="updateMovie" >
     update yz_Shang m set m.name=#{name},m.type=#{type},
         m.standard=#{standard},m.info=#{info},m.image=#{image},
-        m.area=#{area},m.principal=#{principal},m.status=#{status},
-        m.createtime=#{createtime},m.number=#{number},m.certification=#{certification},m.city=#{city},m.xian=#{xian},m.address=#{address} where m.id=#{id}
+        m.areaName=#{area},m.principal=#{principal},m.status=#{status},
+        m.createtime=#{createtime},m.number=#{number},m.certification=#{certification},m.cityName=#{city},m.xianName=#{xian},m.address=#{address} where m.id=#{id}
 
     </update>
     <update id="updateCaiPin">

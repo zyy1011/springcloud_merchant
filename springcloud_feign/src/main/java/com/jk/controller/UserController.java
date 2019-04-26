@@ -108,7 +108,9 @@ public class UserController {
     @GetMapping("findMovieById/{id}")
     @ResponseBody
     public Shang findMovieById(@PathVariable("id") Integer id){
-        return userService.findMovieById(id);
+        Shang shang = userService.findMovieById(id);
+        System.out.println(shang);
+        return shang;
     }
 
     @GetMapping("findCaPinById/{id}")
@@ -120,6 +122,7 @@ public class UserController {
     @PutMapping("updateMovie")
     @ResponseBody
     public void updateMovie(@RequestBody Shang shang){
+        System.out.println(shang.toString()+"00-=0-000000000000000000000000000");
         userService.updateMovie(shang);
     }
     @PutMapping("updateCaiPin")

@@ -158,6 +158,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @ResponseBody
     public void updateMovie(Shang shang) {
+        System.out.println(shang.toString()+"----------==============-=-=");
         usermapper.updateMovie(shang);
     }
 

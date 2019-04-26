@@ -66,7 +66,7 @@
             },
             columns:[
                 {field:"check",checkbox:true},
-              /*  {field:'id',title:'主键id'},*/
+                {field:'id',title:'主键id'},
                 {field:'name',title:'名称'},
                 {field:'type',title:'类型',formatter:function(value,row,index){
                         return value==1?"大商":value==2?"小商":"其他";
@@ -81,11 +81,12 @@
                 {field:'expirationdate',title:'申请创建时间'},
                 {field:'principal',title:'店铺负责人'},
                 {field:'area',title:'店铺地址', formatter:function(value,row,index){
+
                         return value = row.areaName+ "-" +row.cityName+ "-" +row.xianName+ "-" +row.address;
                 }},
                 {field:'createtime',title:'开店时间'},
                 {field:'status',title:'是否立刻开店',formatter:function(value,row,index){
-                        return value==1?"是":value==2?"否":"其他";
+                        return value==1?"是":"否";
                     }},
                 {field:'number',title:'店铺人数'},
                 {field:'certification',title:'店铺资格',formatter:function(value,row,index){
@@ -93,7 +94,7 @@
                     }},
                 {field:'456',title:'操作',formatter:function(value,row,index){
                         var html ="<a href='javascript:delOne("+row.id+")'>删除</a>" ;
-                        html +="<a href='javascript:openUpdate("+row.id+")'>修改</a>" ;
+                       /* html +="<a href='javascript:openUpdate("+row.id+")'>修改</a>" ;*/
                         return html;
                     }}
             ]
@@ -157,9 +158,9 @@
 
                                 'expirationdate':expirationdate,
                                 'principal':principal,
-                                'area':area,
-                                'city':city,
-                                'xian':xian,
+                                'areaName':area,
+                                'cityName':city,
+                                'xianName':xian,
                                 'address':address,
                                 'status':status,
                                 'createtime':createtime,
@@ -293,6 +294,7 @@
 
     //打开修改弹框
     function openUpdate(id){
+        initArea();
         bootbox.dialog({
             title:'修改用户',
             message: createAddContent("../page/toupdate"),
@@ -306,15 +308,18 @@
                         var name = $("#name").val();
                         var standard = $("#standard").val();
                         var info = $("#info").val();
-                        var type = $("#type").val();
+                        var type = $("#typea").val();
                         //照片
                         var certification = $("#certification").val();
                         //照片
                         var image = $("#imagea").val();
                         var expirationdate = $("#expirationdate").val();
                         var principal = $("#principal").val();
-                        var area = $("#area").val();
-                        var status = $("#status").val();
+                        var area = $("#areaid").val();
+                        var city = $("#cityid").val();
+                        var xian = $("#xianid").val();
+                        var address = $("#address").val();
+                        var status = $("#status input:radio:checked").val();
                         var createtime = $("#createtime").val();
                         var number = $("#number").val();
                         $.ajax({
@@ -333,6 +338,9 @@
                                 'expirationdate':expirationdate,
                                 'principal':principal,
                                 'area':area,
+                                'city':city,
+                                'xian':xian,
+                                'address':address,
                                 'status':status,
                                 'createtime':createtime,
                                 'number':number
@@ -362,25 +370,27 @@
                  id:id
              },*/
             success:function(data){
+                alert(data.city);
                 $("#id").val(data.id);
                 $("#name").val(data.name);
                /* $("#type").val(data.type);*/
-                $("#type").find("option[value='"+data.type+"']").attr("selected",true);
-                $("#standard").val(data.standard);
+                $("#typea").find("option[value='"+data.type+"']").attr("selected",true);
+                $("#standard").find("option[value='"+data.standard+"']").attr("selected",true);
                 $("#info").val(data.info);
                 $("#principal").val(data.principal);
                 /*$("#area").val(data.area);*/
                 $("#areaid").find("option[value='"+data.area+"']").attr("selected",true);
                 $("#cityid").find("option[value='"+data.city+"']").attr("selected",true);
-                $("#xianid").find("option[value='"+data.city+"']").attr("selected",true);
+                $("#xianid").find("option[value='"+data.xian+"']").attr("selected",true);
+
                 $("#address").val(data.address);
                 //照片
                 $("#imagea").val(data.image);
                 $("#testimg").prop("src",data.image);
+
                 //照片
                 $("#certification").val(data.certification);
                 $("#testimg2").prop("src",data.certification);
-                /*$("#status").val(data.status);*/
                 $(":input[name='status']").each(function(){
                     var value=$(this).val();
                     if(value==data.status){
@@ -394,6 +404,49 @@
 
     }
 
+    function initArea(){
+        var id = 0;
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeCity(data.id);
+                $("#areaid").html(html);
+            }
+        })
+    }
+    function changeCity(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#cityid").html(html);
+            }
+        })
+    }
+    function changeXian(id){
+        $.ajax({
+            url:'../user/findAreaId/'+id,
+            type:'get',
+            success:function(data){
+                var html = "<option value='-1'>请选择</option>";
+                for (var i = 0; i < data.length; i++) {
+                    html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                }
+                changeXian(data.id);
+                $("#xianid").html(html);
+            }
+        })
+    }
 
 
 

@@ -61,7 +61,7 @@
                 <tr>
                     <td>类型</td>
                     <td>
-                        <select id="type" name="type" class="form-control">
+                        <select id="typea" name="type" class="form-control">
                             <option value="${type}">请选择</option>
                             <option value="1">大商</option>
                             <option value="2" >小商</option>
@@ -73,7 +73,12 @@
                 <tr>
                     <td>商户规模</td>
                     <td>
-                        <input type="text" class="form-control" id="sex" name="standard" style="border:0px;">
+                        <select id="standard" name="standard" class="form-control">
+                            <option value="${standard}">请选择</option>
+                            <option value="1">大型</option>
+                            <option value="2" >小型</option>
+                            <option value="3" >其他</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -83,9 +88,36 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>地址</td>
                     <td>
-                        <input type="text" class="form-control" id="area" name="area" style="border:0px;width: 300px;">
+                        <div class="col-md-2">
+                            <label for="areaid">地区</label>
+                        </div>
+                    </td>
+                    <td>
+                        <table align="left">
+                            <div class="col-md-4">
+                                <tr>
+                                    <td>
+                                        <select class="form-control" name="area" id="areaid" onChange="changeCity(this.value)">
+                                            <option value="${area}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="city" id="cityid" onChange="changeXian(this.value)">
+                                            <option value="${city}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="xian" id="xianid">
+                                            <option value="${xian}">请选择</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="请输入具体地址"/>
+                                    </td>
+                                </tr>
+                            </div>
+                        </table>
                     </td>
                 </tr>
                 <tr>
